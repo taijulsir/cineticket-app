@@ -1,0 +1,14 @@
+.hoyts_contact_form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.input_field {
+    outline: none;
+    border-radius: 6px;
+    padding: 6px;
+    /* border: 1px solid #f1b30e; */
+    background: #e9e9e9;
+}
