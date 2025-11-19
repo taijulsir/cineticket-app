@@ -1,0 +1,129 @@
+.seat-management {
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	/* overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: none; */
+}
+
+.seat-management::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #f5f5f51c;
+	border-radius: 10px;
+}
+
+.seat-management::-webkit-scrollbar {
+	width: 3px;
+	height: 3px;
+	background-color: #f5f5f528;
+	border-radius: 10px;
+}
+
+.seat-management::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.44, rgb(236, 193, 65)),
+		color-stop(0.5, rgb(231 173 4)),
+		color-stop(0.86, rgb(236, 193, 65))
+	);
+}
+
+.seat-management table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.seat-management tbody {
+	width: 100%;
+}
+
+.seat-management td {
+	padding: 5px;
+	position: relative;
+}
+
+.seat-management th:not(:first-child) {
+	padding: 5px;
+}
+
+.square-button {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	position: relative;
+}
+
+.square-button::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+	z-index: 10;
+}
+
+.square-button.booked {
+	background-color: black;
+}
+
+.square-button:hover::after {
+	opacity: 1;
+}
+
+.square-button.available {
+	border: 1px solid blue;
+}
+
+.square-button.unavailable {
+	border: 1px solid #dc3545;
+}
+
+.square-button.stair {
+	border: 1px solid #007bff;
+}
+
+.square-button.vip {
+	border: 1px solid #ffc107;
+}
+
+.square-button.wheelchair {
+	border: 1px solid #fd7e14;
+}
+
+.square-button.selected {
+	background-color: rgb(236, 190, 27);
+	/* Change this to your desired selected color */
+}
+
+.square-button:focus {
+	outline: none;
+}
+
+/* @media screen and (min-width:1280px) {
+    .square-button{
+      padding: 5px;
+    }
+    
+  }
+   */
+@media only screen and (max-width: 600px) and (min-width: 360px) {
+	.seat-management {
+		padding: 20px 0px;
+	}
+}
