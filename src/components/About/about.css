@@ -1,0 +1,38 @@
+.partner-button,
+.partner-button-2 {
+    width: 200px;
+    height: 56px;
+    background-color: #e7ad04;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 1s;
+
+}
+.partner-button-2 {
+    background-color: transparent;
+    border: 1px solid #ffff;
+    color: #fff;
+}
+
+.partner-button:hover {
+    box-shadow: 1px 1px 13px #e7ad048c, -1px -1px 13px #e7ad048c;
+    font-weight: 500;
+}
+
+.partner-button-2:hover {
+    box-shadow: 1px 1px 13px #fff, -1px -1px 13px #fff;
+    font-weight: 500;
+}
+@media only screen and (max-width: 640px) and (min-width: 360px) {
+    .partner-button,
+    .partner-button-2 {
+        width: 145px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
