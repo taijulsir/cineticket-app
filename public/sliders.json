@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "The Matrix",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 1999,
+      "time": "2h 16min",
+      "movieImage": "https://i.postimg.cc/xCKPnXg1/Image-Placeholder.png",
+      "vote": 12
+    },
+    {
+      "id":2,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "Inception",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 2010,
+      "time": "2h 28min",
+      "movieImage": "https://i.postimg.cc/VNXtb3t7/vote-2.png",
+      "vote": 13
+    },
+    {
+      "id": 3,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "The Lord of the Rings",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 2001,
+      "time": "2h 58min",
+      "movieImage": "https://i.postimg.cc/VNXtb3t7/Image-Placeholder-1.png",
+      "vote": 16
+    },
+    {
+      "id": 1,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "The Matrix",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 1999,
+      "time": "2h 16min",
+      "movieImage": "https://i.postimg.cc/xCKPnXg1/Image-Placeholder.png",
+      "vote": 12
+    },
+    {
+      "id":2,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "Inception",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 2010,
+      "time": "2h 28min",
+      "movieImage": "https://i.postimg.cc/VNXtb3t7/vote-2.png",
+      "vote": 13
+    },
+    {
+      "id": 3,
+      "bannerImage": "https://i.postimg.cc/9fRV1b6S/banner-img.jpg",
+      "movieName": "The Lord of the Rings",
+      "movieDetails":"Action Fantasy Advanture",
+      "year": 2001,
+      "time": "2h 58min",
+      "movieImage": "https://i.postimg.cc/VNXtb3t7/Image-Placeholder-1.png",
+      "vote": 16
+    }
+  ]
