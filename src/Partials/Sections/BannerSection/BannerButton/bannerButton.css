@@ -1,0 +1,52 @@
+.banner-button,
+.banner-button-2 {
+    width: 200px;
+    height: 56px;
+    background-color: #e7ad04;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 1s;
+
+}
+.banner-button-2 {
+    background-color: #fff;
+}
+
+.banner-button:hover {
+    box-shadow: 1px 1px 13px #e7ad048c, -1px -1px 13px #e7ad048c;
+    font-weight: 500;
+}
+
+.banner-button-2:hover {
+    box-shadow: 1px 1px 13px #fff, -1px -1px 13px #fff;
+    font-weight: 500;
+}
+
+.banner-button svg,
+.banner-button-2 svg {
+    display: none;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.banner-button:hover svg,
+.banner-button-2:hover svg {
+    display: block;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 641px) {}
+
+@media only screen and (max-width: 640px) and (min-width: 360px) {
+    .banner-button,
+    .banner-button-2 {
+        width: 135px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
