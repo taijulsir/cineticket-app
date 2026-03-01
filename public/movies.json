@@ -1,0 +1,124 @@
+[
+    {
+        "id": 1,
+        "bannerImage": "https://i.postimg.cc/Y9qVVZJd/main-banner.png",
+        "movieImage": "https://i.postimg.cc/vHXzx5cM/image-30.png",
+        "year": 2001,
+        "time": "2h 58min",
+        "vote": 16,
+        "name": "Inception",
+        "subheading": "Mind-Bending Thriller",
+        "details": "Dream heist, reality twist. Leonardo DiCaprio, Christopher Nolan",
+        "synopsis": {
+            "synopsisDetails":"Dream heist and reality twist. Directed by Christopher Nolan. Starring Leonardo DiCaprio.",
+            "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+        },
+        "castAndCrew": {
+            "producer": "Emma Thomas",
+            "cast": "Leonardo DiCaprio",
+            "director": "Christopher Nolan"
+        },
+        "pages":{
+            "synopsis": {
+                "synopsisDetails":"Dream heist and reality twist. Directed by Christopher Nolan. Starring Leonardo DiCaprio.",
+                "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+            },
+            "castAndCrew": {
+                "producer": "Emma Thomas",
+                "cast": "Leonardo DiCaprio",
+                "director": "Christopher Nolan"
+            }
+        },
+        "similarMovies": "Interstellar, The Matrix, Shutter Island, The Prestige, Memento",
+        "bookASeat": "Select your seats and book tickets for Inception now!"
+    },
+    {
+        "id": 2,
+        "bannerImage": "https://i.postimg.cc/Y9qVVZJd/main-banner.png",
+        "movieImage": "https://via.placeholder.com/150",
+        "year": 2001,
+        "time": "2h 58min",
+        "vote": 16,
+        "name": "The Shawshank Redemption",
+        "subheading": "Redemption Drama",
+        "details": "Wrongful conviction, prison life, friendship. Stephen King, Frank Darabont",
+        "synopsis": {
+            "synopsisDetails":"Wrongly convicted banker Andy Dufresne adapts to life in prison.",
+            "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+        },
+        "castAndCrew": {
+            "producer": "Niki Marvin",
+            "cast": "Tim Robbins , Morgan Freeman",
+            "director": "Frank Darabont"
+        },
+        "similarMovies": "The Green Mile, Forrest Gump, The Godfather, Schindler's List",
+        "bookASeat": "Witness the redemption. Book your tickets now!",
+        "image": "/shawshank-redemption.jpg"
+    },
+    {
+        "id": 3,
+        "name": "The Godfather",
+        "bannerImage": "https://i.postimg.cc/Y9qVVZJd/main-banner.png",
+        "movieImage": "https://via.placeholder.com/150",
+        "year": 2001,
+        "time": "2h 58min",
+        "vote": 16,
+        "subheading": "Crime Drama",
+        "details": "Mafia family, power struggle. Marlon Brando, Francis Ford Coppola",
+        "synopsis": {
+            "synopsisDetails":"The aging patriarch of an organized crime dynasty transfers control of his empire to his reluctant son.",
+            "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+        },
+        "castAndCrew": {
+            "producer": "Albert S. Ruddy",
+            "cast": "Marlon Brando ,Al Pacino",
+            "director": "Francis Ford Coppola"
+        },
+        "similarMovies": "Goodfellas, Scarface, The Sopranos, Casino, The Departed",
+        "bookASeat": "Experience the epic saga. Book your seats now!"
+    },
+    {
+        "id": 4,
+        "name": "Pulp Fiction",
+        "bannerImage": "https://i.postimg.cc/Y9qVVZJd/main-banner.png",
+        "movieImage": "https://via.placeholder.com/150",
+        "year": 2001,
+        "time": "2h 58min",
+        "vote": 16,
+        "subheading": "Crime Thriller",
+        "details": "Interwoven stories, violence. Quentin Tarantino, John Travolta",
+        "synopsis": {
+            "synopsisDetails":"The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+        },
+        "castAndCrew": {
+            "producer": "Lawrence Bender",
+            "cast": "John Travolta , Uma Thurman",
+            "director": "Quentin Tarantino"
+        },
+        "similarMovies": "Reservoir Dogs, Kill Bill, Jackie Brown, Fight Club, Goodfellas",
+        "bookASeat": "Step into the world of Pulp Fiction. Book your tickets now!"
+    },
+    {
+        "id": 5,
+        "name": "The Dark Knight",
+        "bannerImage": "https://i.postimg.cc/Y9qVVZJd/main-banner.png",
+        "movieImage": "https://via.placeholder.com/150",
+        "year": 2001,
+        "time": "2h 58min",
+        "vote": 16,
+        "subheading": "Superhero Action",
+        "details": "Batman, Joker, Heath Ledger. Christopher Nolan",
+        "synopsis": {
+            "synopsisDetails":"Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+            "synopsisImage":"https://i.postimg.cc/9fRV1b6S/banner-img.jpg"
+        },
+        "castAndCrew": {
+            "producer": "Emma Thomas",
+            "cast": "Christian Bale , Heath Ledger",
+            "director": "Christopher Nolan"
+        },
+        "similarMovies": "The Dark Knight Rises, Batman Begins, Joker, Avengers, Iron Man",
+        "bookASeat": "Witness the epic battle between Batman and the Joker. Book now!"
+    }
+]
