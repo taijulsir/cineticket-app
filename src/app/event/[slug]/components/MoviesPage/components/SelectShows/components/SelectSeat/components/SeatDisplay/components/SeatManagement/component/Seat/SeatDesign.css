@@ -1,0 +1,11 @@
+.seat-size {
+	aspect-ratio: 1/1;
+}
+
+.tool-tip-text {
+	display: none;
+}
+
+.seat-act-area:hover .tool-tip-text {
+	display: block;
+}
