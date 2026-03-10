@@ -1,0 +1,5 @@
+export const AUTH_API ='auth/'
+export const REGISTER_API =AUTH_API + 'register/'
+export const LOGIN_API =AUTH_API + 'login/'
+export const FORGOT_PASSWORD_API =AUTH_API + 'forgotcustomerPassword/'
+export const RESET_PASSWORD_API =AUTH_API + 'resetPassword/'
