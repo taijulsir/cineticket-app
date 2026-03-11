@@ -1,0 +1,9 @@
+.theater_show {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin: auto 10%;
+	select {
+		height: 30px;
+		padding: 4px !important;
+	}
+}
