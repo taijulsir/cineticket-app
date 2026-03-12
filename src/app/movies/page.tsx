@@ -3,33 +3,16 @@ import React, { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { SlidersHorizontal, SortAsc, ChevronDown, Film, Sparkles } from "lucide-react";
 import MovieCard from "@/components/ModernUI/MovieCard";
-import { Movie, mockMovies, upcomingMovies } from "@/Utilities/mockData/mockMovies";
+import { Movie } from "@/Utilities/mockData/mockMovies";
 import { motion, AnimatePresence } from "framer-motion";
+import { cineticketApi } from "@/lib/cineticketApi";
+import { eventToMovie } from "@/lib/movieMapper";
 
 import SearchAutocomplete from "@/components/ModernUI/Movies/SearchAutocomplete";
 import FilterSidebar from "@/components/ModernUI/Movies/FilterSidebar";
 import MobileFilterDrawer from "@/components/ModernUI/Movies/MobileFilterDrawer";
 import SkeletonMovieCard from "@/components/ModernUI/Movies/SkeletonMovieCard";
 import EmptyState from "@/components/ModernUI/Movies/EmptyState";
-
-/* ── Merge all movies into one browsable list ──────── */
-const allMovies: Movie[] = [
-    ...mockMovies,
-    ...upcomingMovies.map((m) => ({
-        ...m,
-        category: "Coming Soon",
-        rating: m.rating || "0",
-        runtime: m.runtime || "TBA",
-        language: (m as any).language || "English",
-        format: (m as any).format || "2D",
-        isTrending: false,
-        isTopRated: false,
-        slug: (m as any).slug || m.title.toLowerCase().replace(/ /g, "-"),
-        cast: (m as any).cast || [],
-        shows: [],
-        description: m.description || ""
-    } as Movie)),
-];
 
 interface FilterState {
     selectedGenres: string[];
@@ -61,11 +44,33 @@ function MoviesPageInner() {
     const [filters, setFilters] = useState(defaultFilters);
     const [isLoading, setIsLoading] = useState(true);
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+    const [allMovies, setAllMovies] = useState<Movie[]>([]);
 
-    /* Simulate initial load */
     useEffect(() => {
-        const t = setTimeout(() => setIsLoading(false), 600);
-        return () => clearTimeout(t);
+        let mounted = true;
+        async function loadMovies() {
+            try {
+                const [nowSelling, upcoming, past] = await Promise.all([
+                    cineticketApi.getEvents({ status: "NOW_SELLING", type: "MOVIE", limit: 100 }),
+                    cineticketApi.getEvents({ status: "UPCOMING", type: "MOVIE", limit: 100 }),
+                    cineticketApi.getEvents({ status: "PAST", type: "MOVIE", limit: 100 }),
+                ]);
+                if (!mounted) return;
+                setAllMovies([
+                    ...(nowSelling.data ?? []).map(eventToMovie),
+                    ...(upcoming.data ?? []).map(eventToMovie),
+                    ...(past.data ?? []).map(eventToMovie),
+                ]);
+            } catch (_error) {
+                if (mounted) setAllMovies([]);
+            } finally {
+                if (mounted) setIsLoading(false);
+            }
+        }
+        loadMovies();
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     /* Single filter setter */
@@ -139,7 +144,7 @@ function MoviesPageInner() {
         }
 
         return result;
-    }, [searchQuery, statusFilter, filters, sortBy]);
+    }, [allMovies, searchQuery, statusFilter, filters, sortBy]);
 
     /* Count active filters for badge */
     const activeFilterCount = filters.selectedGenres.length + filters.selectedLanguages.length + filters.selectedFormats.length + filters.selectedYears.length + (filters.selectedRating > 0 ? 1 : 0);

@@ -1,4 +1,5 @@
 import { AuthContextProvider } from "@/context/AuthContext/AuthContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { AppContextProvider } from "@/context/AppContext";
@@ -40,8 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${jakarta.variable} ${inter.variable}`}>
       <body>
-        <AuthContextProvider>
-          <AppContextProvider>
+          <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+          <AuthContextProvider>
+            <AppContextProvider>
             <FacebookPixel />
             <GoogleAnalytics />
             <Navbar />
@@ -53,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </AppContextProvider>
         </AuthContextProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

@@ -122,13 +122,15 @@
 }
 
 .skeleton-gradient {
-  background: linear-gradient(to right,
-      #e0e0e0 0%,
-      #f0f0f0 20%,
-      #e0e0e0 40%,
-      #e0e0e0 100%);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.045) 20%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite linear;
+  animation: shimmer 2s ease-in-out infinite;
 }
 
 @layer base {
@@ -175,7 +177,7 @@
       @apply text-[#FFFFFF] ;
     } */
   span {
-    @apply underline text-sm md:text-base font-normal;
+    @apply text-sm md:text-base font-normal;
   }
 
   .rubik {
@@ -513,4 +515,32 @@ html {
     width: 25px;
     height: 25px;
   }
+}
+
+/* Override Swiper navigation arrows to match site theme (use --primary) */
+/* Applies to all Swiper instances, including homepage sliders */
+.swiper {
+  /* Swiper uses this variable for navigation icons in its CSS */
+  --swiper-navigation-color: var(--primary);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary) !important; /* affects SVG icons that use currentColor */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: var(--primary) !important;
+}
+
+/* If any Swiper button uses background-image SVGs, force a tint using filter as fallback */
+.swiper-button-next,
+.swiper-button-prev {
+  filter: none;
+}
+
+/* Also ensure pagination bullets use primary where appropriate */
+.swiper-pagination-bullet-active {
+  background: var(--primary) !important;
 }

@@ -7,9 +7,9 @@ function PrivacyPolicyDescription() {
             {/* <p>BongOz Films Personal Data Policy</p> */}
 
             <h4>We Respect Your Privacy</h4>
-            <p>At BongOz Films, we value your privacy. This policy explains how we collect, use, and protect your personal information. We strive for transparency and encourage you to contact us at info@bongozfilms.com with any questions.</p>
+            <p>At BongOz Films, we value your privacy. This policy explains how we collect, use, and protect your personal information. We strive for transparency and encourage you to contact us at info@cineticket.com with any questions.</p>
 
-            <p>You can access and request corrections to your information, as detailed in this policy. The latest version is available on our website&nbsp;<Link href="http://www.bongozfilms.com">www.bongozfilms.com</Link>&nbsp;</p>
+            <p>You can access and request corrections to your information, as detailed in this policy. The latest version is available on our website&nbsp;<Link href="http://www.cineticket.com">www.cineticket.com</Link>&nbsp;</p>
             <h4>We only collect information necessary for your interactions with us.</h4>
             <p>BongOz Films collects the following types of personal information:</p>
 
@@ -90,7 +90,7 @@ function PrivacyPolicyDescription() {
 
             <ul>
                 <li>Clicking the "unsubscribe" link in any email communication.</li>
-                <li>Contacting us at info@bongozfilms.com and requesting to be removed from our mailing list.</li>
+                <li>Contacting us at info@cineticket.com and requesting to be removed from our mailing list.</li>
 
             </ul>
 
@@ -189,7 +189,7 @@ function PrivacyPolicyDescription() {
 
             <p >BongOz Films Members:</p>
 
-            <p >You can access or correct some of your information by logging into your account on our website: www.bongozfilms.com.</p>
+            <p >You can access or correct some of your information by logging into your account on our website: www.cineticket.com.</p>
 
             <p >Non-Members:</p>
 
@@ -198,7 +198,7 @@ function PrivacyPolicyDescription() {
             <p >In some cases, we may not be able to provide access or make corrections, as outlined in the Australian Privacy Principles. We will always notify you in writing if this occurs.</p>
 
             <h4>Complaints &amp; Contacting Our Privacy Officer</h4>
-            <p >If you have a complaint or believe we are not complying with this Privacy Policy or Australian Privacy Principles, please email us at info@bongozfilms.com.</p>
+            <p >If you have a complaint or believe we are not complying with this Privacy Policy or Australian Privacy Principles, please email us at info@cineticket.com.</p>
 
             <p >We will investigate your complaint and respond within 30 days. If you remain unsatisfied, you may contact the Office of the Australian Information Commissioner.</p>
 

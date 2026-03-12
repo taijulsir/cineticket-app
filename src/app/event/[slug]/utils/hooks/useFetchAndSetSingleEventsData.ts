@@ -12,10 +12,16 @@ function useFetchAndSetSingleEventData (slug) {
     useEffect(() => {
         async function fetchEventData() {
             try {
-                const { data } = await axiosPublicInstance.get(`events/singleEvent/${slug}`);
-                setEvent(data?.event);
-                setStatistics({totalHalls: data?.totalHalls , totalCities: data?.totalCities, totalTheaters: data?.totalTheaters})
-                setAds(data?.ads);
+                const [eventRes, adsRes] = await Promise.all([
+                    axiosPublicInstance.get(`events/${slug}`),
+                    axiosPublicInstance.get(`ads`),
+                ]);
+                const eventData = eventRes.data?.data ?? eventRes.data;
+                setEvent(eventData);
+                const theaters = new Set((eventData?.shows ?? []).map((show) => show.theaterId));
+                const halls = new Set((eventData?.shows ?? []).map((show) => show.hallId));
+                setStatistics({ totalHalls: halls.size, totalCities: 0, totalTheaters: theaters.size })
+                setAds(adsRes.data?.data ?? adsRes.data);
             } catch (error) {
                 console.error('Error fetching event data:', error);
             }

@@ -1,5 +1,5 @@
 {
-  "name": "bongozfilms.com",
+  "name": "cineticket.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-oauth/google": "^0.13.4",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.4.1",
     "antopolis-react-utils": "^1.0.10",

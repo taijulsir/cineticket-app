@@ -11,19 +11,20 @@ function useApplyPromocode(promoCode, setPromoCode, error, setError, triggerFetc
 
     const handleApplyPromoCode = async (total) => {
         try {
-            const { data } = await axiosPublicInstance.post("/applyPromocode", {
+            const { data } = await axiosPublicInstance.post("/promo-codes/apply", {
                 promoCode,
                 totalPrice: total,
                 selectedSeats
             });
+            const payload = data?.data ?? data;
 
-            setDiscount(data?.discount || 0);
-            setAfterDiscountTotal(data?.totalPrice || 0);
+            setDiscount(payload?.discount || 0);
+            setAfterDiscountTotal(payload?.totalPrice || 0);
             setIsPromo(true);
-            setPromoCodeId(data?.promoCodeId || '');
+            setPromoCodeId(payload?.promoCodeId || '');
 
-            if (data.error) {
-                setError(data.message);
+            if (data?.success === false || payload?.error) {
+                setError(data?.message || payload?.message);
                 setSelectedSeats([])
                 setName("")
                 setEmail("")

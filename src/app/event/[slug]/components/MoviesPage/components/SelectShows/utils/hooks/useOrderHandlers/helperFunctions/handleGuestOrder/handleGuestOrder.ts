@@ -1,6 +1,5 @@
 import { createOrderPayload } from './utils/createOrderPayload';
 import { handleOrderError } from './utils/handleOrderError';
-import { redirectToStripeCheckout } from './utils/redirectToStripeCheckout';
 
 export const handleGuestOrder = async ({
     eventId,
@@ -29,20 +28,23 @@ export const handleGuestOrder = async ({
         })
 
 
-        const res = await axiosPublicInstance.post(
-            '/guestPayments/createPaymentCheckoutSession',
-            orderData
-        );
-
-        if (res.data.error) {
-            handleOrderError(res.data.message, setError, setSelectedSeats, triggerFetch);
+        const orderRes = await axiosPublicInstance.post('/orders', orderData);
+        const orderPayload = orderRes.data?.data ?? orderRes.data;
+        const orderId = orderPayload?.id;
+        if (!orderId) {
+            handleOrderError('Order creation failed', setError, setSelectedSeats, triggerFetch);
             return;
         }
 
-        await redirectToStripeCheckout(res.data.id, setError);
+        const paymentRes = await axiosPublicInstance.post('/payments/stripe/start', { orderId });
+        const checkoutUrl = paymentRes.data?.data?.checkoutUrl ?? paymentRes.data?.checkoutUrl;
+        if (!checkoutUrl) {
+            handleOrderError('Stripe session failed', setError, setSelectedSeats, triggerFetch);
+            return;
+        }
+        window.location.href = checkoutUrl;
     } catch (error) {
         console.error('Guest order error:', error);
         setError(error.message);
     }
 };
-

@@ -1,7 +1,6 @@
 
-import Footer from "@/components/Partials/Footer/Footer";
-import Navbar from "@/components/Partials/Navbar/Navbar";
 import ProfilePages from "@/components/pages/Profile/ProfilePages/ProfilePages";
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 export const metadata = {
   title: 'Profile | BongOz Films',
@@ -9,7 +8,9 @@ export const metadata = {
 }
 function page() {
   return (
-    <ProfilePages />
+    <ProtectedRoute>
+      <ProfilePages />
+    </ProtectedRoute>
   );
 }
 

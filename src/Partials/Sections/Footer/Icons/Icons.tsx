@@ -15,11 +15,11 @@ function Icons() {
 
   useEffect(() => {
     async function homeData() {
-      const { data } = await axiosPublicInstance.get('homePageData');
-      setSocialLinks(data?.socialLinks)
+      const { data } = await axiosPublicInstance.get('social-links');
+      setSocialLinks(data?.data ?? data)
     }
     homeData();
-  }, []);
+  }, [axiosPublicInstance]);
 
   const getSocialLinks = (name) => socialLinks && socialLinks.length> 0 && socialLinks?.find(social => social.name === name)?.link || '';
   return (

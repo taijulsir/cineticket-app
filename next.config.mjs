@@ -16,9 +16,9 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: `bongozfilms.com`,
+        hostname: `cineticket.com`,
       },
-      
+
     ],
   },
 };

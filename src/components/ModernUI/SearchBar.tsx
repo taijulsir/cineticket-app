@@ -70,7 +70,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ icon: Icon, label, options,
     );
 };
 
-const SearchBar = () => {
+interface SearchBarProps {
+    movies?: Movie[];
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ movies = mockMovies }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [searchResults, setSearchResults] = useState<Movie[]>([]);
@@ -83,25 +87,34 @@ const SearchBar = () => {
 
     const genres = [
         { label: "All Genres", value: "" },
-        { label: "Action", value: "action" },
-        { label: "Sci-Fi", value: "sci-fi" },
-        { label: "Drama", value: "drama" },
-        { label: "Comedy", value: "comedy" }
+        { label: "Action", value: "Action" },
+        { label: "Sci-Fi", value: "Sci-Fi" },
+        { label: "Drama", value: "Drama" },
+        { label: "Comedy", value: "Comedy" },
+        { label: "Horror", value: "Horror" },
+        { label: "Adventure", value: "Adventure" },
+        { label: "Thriller", value: "Thriller" },
+        { label: "Crime", value: "Crime" },
+        { label: "Historical", value: "Historical" },
+        { label: "Mystery", value: "Mystery" },
+        { label: "War", value: "War" },
+        { label: "Romance", value: "Romance" },
     ];
 
-    const dates = [
-        { label: "Any Date", value: "" },
-        { label: "Today", value: "today" },
-        { label: "Tomorrow", value: "tomorrow" },
-        { label: "This Weekend", value: "weekend" }
+    const currentYear = new Date().getFullYear();
+    const years = [
+        { label: "All Years", value: "" },
+        { label: String(currentYear), value: String(currentYear) },
+        { label: String(currentYear - 1), value: String(currentYear - 1) },
+        { label: String(currentYear - 2), value: String(currentYear - 2) },
     ];
 
     const formats = [
         { label: "All Formats", value: "" },
-        { label: "2D Standard", value: "2d" },
-        { label: "3D Experience", value: "3d" },
-        { label: "IMAX 2D", value: "imax" },
-        { label: "4DX", value: "4dx" }
+        { label: "2D Standard", value: "2D" },
+        { label: "3D Experience", value: "3D" },
+        { label: "IMAX 2D", value: "IMAX" },
+        { label: "4DX", value: "4DX" }
     ];
 
     useEffect(() => {
@@ -115,15 +128,31 @@ const SearchBar = () => {
     }, []);
 
     useEffect(() => {
-        if (searchQuery.trim().length > 0) {
-            const results = mockMovies
-                .filter(m => m.title.toLowerCase().includes(searchQuery.toLowerCase()))
-                .slice(0, 4);
-            setSearchResults(results);
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+        
+        const filtered = movies.filter(m => {
+            const matchesSearch = !normalizedQuery || m.title.toLowerCase().includes(normalizedQuery);
+            
+            const movieGenres = Array.isArray(m.genres) ? m.genres : [];
+            const matchesGenre = !genre || movieGenres.some(g => g.toLowerCase() === genre.toLowerCase());
+            
+            const movieYear = m.releaseDate ? String(m.releaseDate).split('-')[0] : "";
+            const matchesYear = !date || movieYear === date;
+
+            const matchesFormat = !format || 
+                (m.format && m.format.toLowerCase().includes(format.toLowerCase())) || 
+                (m.category && m.category.toLowerCase().includes(format.toLowerCase()));
+            
+            return matchesSearch && matchesGenre && matchesYear && matchesFormat;
+        });
+
+        if (normalizedQuery || genre || date || format) {
+            setSearchResults(filtered.slice(0, 4));
         } else {
             setSearchResults([]);
         }
-    }, [searchQuery]);
+        
+    }, [searchQuery, genre, date, format, movies]);
 
     return (
         <div className="w-full">
@@ -193,11 +222,11 @@ const SearchBar = () => {
                         onChange={setGenre}
                     />
 
-                    {/* Date Custom Dropdown */}
+                    {/* Year Custom Dropdown */}
                     <CustomSelect
                         icon={Calendar}
-                        label="Date"
-                        options={dates}
+                        label="Release Year"
+                        options={years}
                         value={date}
                         onChange={setDate}
                     />

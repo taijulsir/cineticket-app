@@ -9,8 +9,18 @@ function useHomeFetchHook() {
     const [homePageData, setHomePageData] = useState(null);
     useEffect(() => {
         async function homeData() {
-            const { data } = await axiosPublicInstance.get('homePageData');
-            setHomePageData(data);
+            const [events, heroSliders, ads, socialLinks] = await Promise.all([
+                axiosPublicInstance.get('events?status=NOW_SELLING&limit=20'),
+                axiosPublicInstance.get('hero-sliders'),
+                axiosPublicInstance.get('ads'),
+                axiosPublicInstance.get('social-links'),
+            ]);
+            setHomePageData({
+                events: events.data?.data ?? events.data,
+                heroSliders: heroSliders.data?.data ?? heroSliders.data,
+                ads: ads.data?.data ?? ads.data,
+                socialLinks: socialLinks.data?.data ?? socialLinks.data,
+            });
             setTimeout(() => {
                 setIsLoading(false)
             }, 500);

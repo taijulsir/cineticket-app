@@ -83,7 +83,7 @@ function TermDescription() {
       <h4>BongOz Films Ticket Sales Terms &amp; Conditions</h4>
       <p >By purchasing a ticket through BongOz Films, you agree to these terms. They apply to both the original buyer and anyone using the ticket.</p>
 
-      <p >BongOz Films acts as an agent for the event organizer and operates the website&nbsp;<Link href="http://www.bongozfilms.com">www.BongOzFilms.com</Link> Please read these terms carefully before buying a ticket.</p>
+      <p >BongOz Films acts as an agent for the event organizer and operates the website&nbsp;<Link href="http://www.cineticket.com">www.cineticket.com</Link> Please read these terms carefully before buying a ticket.</p>
 
       <h4>Changes to These Terms</h4>
       <p>BongOz Films may change these terms at any time. Updated terms apply only to tickets bought after the changes are made.</p>

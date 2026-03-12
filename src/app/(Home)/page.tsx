@@ -4,10 +4,12 @@ import HeroSection from "@/components/ModernUI/HeroSection";
 import SearchBar from "@/components/ModernUI/SearchBar";
 import MovieSlider from "@/components/ModernUI/MovieSlider";
 import UpcomingCarousel from "@/components/ModernUI/UpcomingCarousel";
-import { Movie, UpcomingMovie, mockMovies, upcomingMovies } from "@/Utilities/mockData/mockMovies";
+import { Movie, UpcomingMovie } from "@/Utilities/mockData/mockMovies";
 import { Users, Globe, MapPin, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { cineticketApi } from "@/lib/cineticketApi";
+import { eventToMovie, eventToUpcomingMovie } from "@/lib/movieMapper";
 
 import {
   HeroSkeleton,
@@ -21,17 +23,39 @@ import {
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [allMovies, setAllMovies] = useState<Movie[]>([]);
+  const [upcomingMovies, setUpcomingMovies] = useState<UpcomingMovie[]>([]);
 
   useEffect(() => {
-    const t = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(t);
+    let mounted = true;
+    async function load() {
+      try {
+        const [nowSelling, upcoming] = await Promise.all([
+          cineticketApi.getEvents({ status: "NOW_SELLING", type: "MOVIE", limit: 30 }),
+          cineticketApi.getEvents({ status: "UPCOMING", type: "MOVIE", limit: 30 }),
+        ]);
+        if (!mounted) return;
+        const nowSellingMovies = (nowSelling.data ?? []).map(eventToMovie);
+        const upcomingEventMovies = (upcoming.data ?? []).map(eventToMovie);
+        setAllMovies([...nowSellingMovies, ...upcomingEventMovies]);
+        setUpcomingMovies((upcoming.data ?? []).map(eventToUpcomingMovie));
+      } catch (_error) {
+        setAllMovies([]);
+        setUpcomingMovies([]);
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    }
+    load();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const featuredMovie: Movie = mockMovies[0];
-  const nowShowingMovies: Movie[] = mockMovies.filter(m => m.category === "Now Showing");
-  const trendingMovies: Movie[] = mockMovies.filter(m => m.isTrending);
-  const topRatedMovies: Movie[] = mockMovies.filter(m => m.isTopRated);
-  const actionMovies: Movie[] = mockMovies.filter(m => (m.genres as string[]).includes("Action") || m.category === "Action");
+  const nowShowingMovies: Movie[] = allMovies.filter((m) => m.category === "Now Showing");
+  const trendingMovies: Movie[] = allMovies.filter((m) => m.isTrending);
+  const topRatedMovies: Movie[] = allMovies.filter((m) => m.isTopRated);
+  const actionMovies: Movie[] = allMovies.filter((m) => (m.genres as string[]).includes("Action") || m.category === "Action");
 
   const stats = [
     { icon: Users, label: "Tickets Sold", value: 2000000, suffix: "+" },
@@ -62,11 +86,11 @@ export default function HomePage() {
   return (
     <main className="bg-[#0b0b0f] min-h-screen">
       {/* Hero Section - Auto Slider */}
-      <HeroSection movies={trendingMovies.slice(0, 5)} />
+      <HeroSection movies={(trendingMovies.length ? trendingMovies : nowShowingMovies).slice(0, 5)} />
 
       {/* Global Filter Section */}
       <section className="section-padding py-12 relative z-20">
-        <SearchBar />
+        <SearchBar movies={allMovies} />
       </section>
 
       {/* Movie Sections */}

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import "./about.css"
 import Modal from '../Modal/Modal'
-import ModalImg from "@/public/Assets/about/about-modal.png"
+import ModalImg from "../../../public/Assets/about/about-modal.png"
 import Image from 'next/image';
 import PartnerModal from './PartnerModal';
 

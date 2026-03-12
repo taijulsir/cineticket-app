@@ -18,8 +18,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www/client-test/bongoz/bongozfilms.antopolis.xyz # Navigate to your app directory on the server
-            GIT_URL="https://x-access-token:${{ secrets.GIT_CREDENTIAL }}@github.com/The-Antopolis/client-bongoz-bongozfilms.com"
+            cd /var/www/client-test/bongoz/cineticket.antopolis.xyz # Navigate to your app directory on the server
+            GIT_URL="https://x-access-token:${{ secrets.GIT_CREDENTIAL }}@github.com/The-Antopolis/client-bongoz-cineticket.com"
             git pull $GIT_URL main
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh 

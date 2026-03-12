@@ -2,7 +2,7 @@
 import React from "react";
 import { SlidersHorizontal, Layers, Globe, Film, Star, Calendar, RotateCcw } from "lucide-react";
 
-const genres = ["Action", "Adventure", "Animation", "Comedy", "Drama", "Sci-Fi", "Thriller", "Biography", "History", "Crime"];
+const genres = ["Action", "Adventure", "Animation", "Comedy", "Drama", "Sci-Fi", "Thriller", "Biography", "History", "Crime", "Mystery", "War", "Romance"];
 const languages = ["English", "Bangla", "Hindi", "Spanish", "French"];
 const formats = ["2D", "3D", "IMAX", "4DX"];
 const ratings = [
@@ -10,7 +10,15 @@ const ratings = [
     { label: "3★ & above", value: 3 },
     { label: "2★ & above", value: 2 },
 ];
-const years = ["2024", "2023", "2022", "2021", "2014", "2010"];
+const currentYear = new Date().getFullYear();
+const years = [
+    String(currentYear),
+    String(currentYear - 1),
+    String(currentYear - 2),
+    "2022",
+    "2021",
+    "2020",
+];
 
 const FilterSidebar = ({ filters, setFilter, onReset, className = "" }) => {
     const {

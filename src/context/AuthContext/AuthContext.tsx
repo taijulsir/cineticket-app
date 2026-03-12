@@ -1,6 +1,6 @@
 "use client";
 
-import { LOGIN_API, REGISTER_API } from "@/Utilities/APIs/AuthAPIs/AuthAPIs";
+import { LOGIN_API, REGISTER_API, GOOGLE_LOGIN_API } from "@/Utilities/APIs/AuthAPIs/AuthAPIs";
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 
 
@@ -17,6 +17,7 @@ interface Customer {
 interface AuthContextType {
   register: (customerData: any) => Promise<any>;
   login: (customerData: any) => Promise<any>;
+  googleLogin: (credential: string) => Promise<any>;
   logout: () => void;
   customer: Customer | null;
   isLoading: boolean;
@@ -25,6 +26,8 @@ interface AuthContextType {
   showModal: boolean;
   showLoginModal: boolean;
   setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
+  returnUrl?: string | null;
+  setReturnUrl?: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,6 +39,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [showModal, setShowModal] = useState(false);
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [returnUrl, setReturnUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const storedCustomer = localStorage.getItem("customer");
@@ -77,6 +81,25 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   }
 
+  async function googleLogin(credential: string) {
+    try {
+      setIsLoading(true);
+      const response = await axiosPublicInstance.post(GOOGLE_LOGIN_API, { token: credential });
+      if (response.data) {
+        setCustomer(response.data);
+        localStorage.setItem("customer", JSON.stringify(response.data));
+        const redirectTo = returnUrl || "/";
+        setReturnUrl(null);
+        router.push(redirectTo);
+      }
+      return response.data;
+    } catch (error: any) {
+      return error?.response;
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   function logout() {
     setCustomer(null);
     localStorage.removeItem("customer");
@@ -86,6 +109,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const values = {
     register,
     login,
+    googleLogin,
     logout,
     customer,
     isLoading,
@@ -95,6 +119,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     showLoginModal,
     setShowLoginModal
   };
+  // include returnUrl handlers in the provided context
+  Object.assign(values, { returnUrl, setReturnUrl, setIsLoading });
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

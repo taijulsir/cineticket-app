@@ -35,7 +35,7 @@ const MovieDetailHeader: React.FC<MovieDetailHeaderProps> = ({ movie }) => {
             <div className="relative z-10 px-6 md:px-12 lg:px-24 w-full">
                 <div className="flex flex-col md:flex-row gap-10 items-end">
                     {/* Poster */}
-                    <div className="hidden md:block w-64 flex-none animate-in fade-in slide-in-from-bottom-10 duration-700">
+                    <div className="hidden md:block w-64 md:mt-[76px] flex-none animate-in fade-in slide-in-from-bottom-10 duration-700">
                         <img
                             src={movie.posterUrl}
                             alt={movie.title}

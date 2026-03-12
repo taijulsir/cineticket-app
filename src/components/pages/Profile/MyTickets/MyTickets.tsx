@@ -73,9 +73,10 @@ function MyTickets() {
 
   useEffect(() => {
     async function fetchAndSetOrders() {
-      const { data } = await axiosInstance.get("getMyOrders")
-      setOrders(data?.orders)
-      setOrderItems(data?.orderItems)
+      const { data } = await axiosInstance.get("orders")
+      const ordersData = data?.data ?? data?.orders ?? []
+      setOrders(ordersData)
+      setOrderItems(ordersData.flatMap((order) => order?.items ?? []))
     }
     fetchAndSetOrders()
   }, [axiosInstance])

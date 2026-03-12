@@ -22,9 +22,10 @@ import {
     Film,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 
 /* ─── Offer Data ────────────────────────────────────── */
-const offers = [
+const fallbackOffers = [
     {
         id: 1,
         title: "Early Bird Special",
@@ -131,7 +132,7 @@ const offers = [
     },
 ];
 
-const filterTabs = [
+const defaultFilterTabs = [
     "All Offers",
     "Ticket Discounts",
     "Food & Snacks",
@@ -302,7 +303,56 @@ function FaqItem({ item, index }) {
 
 /* ─── Main Page ─────────────────────────────────────── */
 export default function OffersPage() {
+    const axiosPublicInstance = useAxiosPublicInstance();
     const [activeTab, setActiveTab] = useState("All Offers");
+    const [offers, setOffers] = useState(fallbackOffers);
+    const [filterTabs, setFilterTabs] = useState(defaultFilterTabs);
+
+    React.useEffect(() => {
+        const visuals = {
+            TICKET_DISCOUNTS: { color: "from-blue-500/20 via-blue-800/10 to-transparent", accentColor: "text-blue-400", badgeBg: "bg-blue-500/20 border-blue-500/30", icon: Ticket },
+            FOOD_SNACKS: { color: "from-orange-500/20 via-orange-800/10 to-transparent", accentColor: "text-orange-400", badgeBg: "bg-orange-500/20 border-orange-500/30", icon: Popcorn },
+            PREMIUM_UPGRADES: { color: "from-purple-500/20 via-purple-800/10 to-transparent", accentColor: "text-purple-400", badgeBg: "bg-purple-500/20 border-purple-500/30", icon: Crown },
+            STUDENT_OFFERS: { color: "from-green-500/20 via-green-800/10 to-transparent", accentColor: "text-green-400", badgeBg: "bg-green-500/20 border-green-500/30", icon: GraduationCap },
+            WEEKEND_DEALS: { color: "from-primary/20 via-amber-800/10 to-transparent", accentColor: "text-primary", badgeBg: "bg-primary/20 border-primary/30", icon: Calendar },
+        };
+        const toDiscountLabel = (item: any) => {
+            if (item.discountType === "PERCENTAGE") return `${item.discountAmount}% OFF`;
+            if (item.discountType === "AMOUNT") return `$${item.discountAmount} OFF`;
+            return "FREE TICKET";
+        };
+        const toDateLabel = (iso: string | null | undefined) =>
+            iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" }) : "Limited Time";
+        const fetchOffers = async () => {
+            try {
+                const response = await axiosPublicInstance.get("/promo-codes/offers");
+                const payload = response?.data?.data ?? response?.data ?? {};
+                const backendOffers = Array.isArray(payload.offers) ? payload.offers : [];
+                const decorated = backendOffers.map((item, idx) => {
+                    const style = visuals[item.categoryKey] || visuals.TICKET_DISCOUNTS;
+                    return {
+                        id: item.id ?? idx + 1,
+                        title: item.title,
+                        description: item.description,
+                        code: item.code,
+                        discount: toDiscountLabel(item),
+                        validUntil: toDateLabel(item.validUntil),
+                        category: item.category,
+                        ...style,
+                    };
+                });
+                if (decorated.length) setOffers(decorated);
+                const backendTabs = Array.isArray(payload.categories)
+                    ? ["All Offers", ...payload.categories.map((c: any) => c.label)]
+                    : defaultFilterTabs;
+                setFilterTabs(backendTabs);
+            } catch {
+                setOffers(fallbackOffers);
+                setFilterTabs(defaultFilterTabs);
+            }
+        };
+        void fetchOffers();
+    }, [axiosPublicInstance]);
 
     const filteredOffers =
         activeTab === "All Offers"

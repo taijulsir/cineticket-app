@@ -5,9 +5,11 @@ import { Ticket, ShieldCheck, ArrowRight } from 'lucide-react';
 interface PriceSummaryProps {
     selectedSeatsCount: number;
     totalPrice: number;
+    onProceed?: () => void;
+    isProcessing?: boolean;
 }
 
-const PriceSummary: React.FC<PriceSummaryProps> = ({ selectedSeatsCount, totalPrice }) => {
+const PriceSummary: React.FC<PriceSummaryProps> = ({ selectedSeatsCount, totalPrice, onProceed, isProcessing = false }) => {
     const serviceFee = selectedSeatsCount > 0 ? 50 * selectedSeatsCount : 0;
     const tax = totalPrice * 0.15;
     const grandTotal = totalPrice + serviceFee + tax;
@@ -49,15 +51,16 @@ const PriceSummary: React.FC<PriceSummaryProps> = ({ selectedSeatsCount, totalPr
 
             <div className="space-y-4 pt-4">
                 <button
-                    disabled={selectedSeatsCount === 0}
+                    disabled={selectedSeatsCount === 0 || isProcessing}
+                    onClick={onProceed}
                     className={`
             w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-all transform
-            ${selectedSeatsCount > 0
+            ${selectedSeatsCount > 0 && !isProcessing
                             ? 'bg-primary text-black hover:scale-[1.02] shadow-btnHover active:scale-95'
                             : 'bg-white/5 text-gray-600 cursor-not-allowed'}
           `}
                 >
-                    Proceed to Pay
+                    {isProcessing ? "Processing..." : "Proceed to Pay"}
                     <ArrowRight size={18} />
                 </button>
 

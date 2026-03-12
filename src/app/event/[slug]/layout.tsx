@@ -2,11 +2,13 @@ import { mockMovies } from "@/Utilities/mockData/mockMovies";
 
 export async function generateMetadata({ params }) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}api/customerApp/public/events/singleEvent/${params.slug}`);
+    const base = `${(process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:5001/").replace(/\/$/, "")}/api`;
+    const response = await fetch(`${base}/events/${params.slug}`, { cache: "no-store" });
     if (!response.ok) throw new Error('Fetch failed');
-    const event = await response.json();
+    const payload = await response.json();
+    const event = payload?.success ? payload.data : payload;
     return {
-      title: `${event?.event?.name || 'Event'} | CineTicket`,
+      title: `${event?.name || 'Event'} | CineTicket`,
       description: 'BongOz Films - Bringing Quality Movie Experiences to your Neighborhood',
     };
   } catch (error) {

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, User, Menu, X, Ticket, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/context/AuthContext/AuthContext";
 
 interface NavLink {
     name: string;
@@ -48,6 +49,8 @@ const Navbar: React.FC = () => {
         { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
     ];
+
+    const auth = useAuth();
 
     return (
         <nav
@@ -126,13 +129,31 @@ const Navbar: React.FC = () => {
                         <Search size={22} />
                     </button>
 
-                    <Link
-                        href="/signin"
-                        className="hidden md:flex items-center gap-2 p-2 text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
-                    >
-                        <User size={22} />
-                        <span className="text-sm font-bold">Sign In</span>
-                    </Link>
+                    {auth?.customer ? (
+                        <div className="relative">
+                            <button className="hidden md:flex items-center gap-2 p-2 text-gray-300 hover:text-primary transition-colors whitespace-nowrap" onClick={() => setActiveDropdown(prev => prev === 'user' ? null : 'user')}>
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 text-white font-bold">{auth.customer.name ? auth.customer.name.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}</div>
+                                <span className="text-sm font-bold">{auth.customer.name}</span>
+                            </button>
+                            <AnimatePresence>
+                                {activeDropdown === 'user' && (
+                                    <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} className="absolute right-0 mt-2 w-44 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl py-2 z-50">
+                                        <Link href="/my-bookings" className="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5">My Bookings</Link>
+                                        <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5">Profile</Link>
+                                        <button onClick={() => { auth.logout(); setActiveDropdown(null); }} className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-white/5">Logout</button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    ) : (
+                        <Link
+                            href="/signin"
+                            className="hidden md:flex items-center gap-2 p-2 text-gray-300 hover:text-primary transition-colors whitespace-nowrap"
+                        >
+                            <User size={22} />
+                            <span className="text-sm font-bold">Sign In</span>
+                        </Link>
+                    )}
 
                     {/* Book Tickets Button - Fixed text wrapping */}
                     <Link

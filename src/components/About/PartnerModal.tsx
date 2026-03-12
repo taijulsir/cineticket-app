@@ -1,6 +1,7 @@
+"use client"
 import Image from 'next/image'
 import React, { useState } from 'react'
-import ModalImg from "@/public/Assets/about/about-modal.png"
+import ModalImg from "../../../public/Assets/about/about-modal.png"
 import { FaCheck } from "react-icons/fa6";
 
 function PartnerModal() {
