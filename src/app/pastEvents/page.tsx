@@ -4,8 +4,8 @@ import PastEventCard from "./PastEventCard/PastEventCard";
 import Ads from "../(Home)/Group/Ads/Ads";
 
 export const metadata = {
-    title: 'Events | BongOz Films',
-    description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
+    title: 'Events | CineTicket',
+    description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
 }
 function PastEvents() {
 

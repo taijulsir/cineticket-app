@@ -4,8 +4,8 @@ import React from 'react'
 
 
 export const metadata = {
-    title: 'Privacy Policy | BongOz Films',
-    description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
+    title: 'Privacy Policy | CineTicket',
+    description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
 }
 function page() {
 

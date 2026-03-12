@@ -11,13 +11,13 @@ function TermDescription() {
     //   <h6 className="pb-4 md:pb-6">
     //     These Terms and Conditions relate to tickets sold as well as attending
     //     the event and apply to both the original purchaser and any subsequent
-    //     attendee. Variation to Terms and Conditions BongOz Films have the sole
+    //     attendee. Variation to Terms and Conditions CineTicket have the sole
     //     right to vary these Terms and Conditions at any time by updating them
     //     and will only apply to tickets purchased after the update.
     //   </h6>
     //   <h6>General Terms and Conditions</h6>
     //   <h6>
-    //     BongOz Films may restrict, suspend or terminate any user account in the
+    //     CineTicket may restrict, suspend or terminate any user account in the
     //     event of inconsistency with these Terms and Conditions. This also
     //     includes users who we believe are harassing, threatening or abusing our
     //     employees or other users or who act in an unlawful or inappropriate
@@ -35,7 +35,7 @@ function TermDescription() {
     //   <h6>
     //     2.Only the amount for which the ticket was purchased will be refunded
     //     for a valid claim, including any fees or charges. Proof of purchase may
-    //     be required for any refund or exchange. BongOz Films will not be liable
+    //     be required for any refund or exchange. CineTicket will not be liable
     //     for any other losses incurred by you as a result of the cancellation,
     //     rescheduling or relocation of an event, including any travel and
     //     accommodation expenses.
@@ -75,27 +75,27 @@ function TermDescription() {
     //   <h6>
     //     1. Entry to an event may be refused if the authenticity or validity of a
     //     ticket is questionable, including because the ticket has been damaged or
-    //     defaced in any way, or has not been purchased from BongOz Films or other
+    //     defaced in any way, or has not been purchased from CineTicket or other
     //     authorised points of sale.
     //   </h6>
     // </div>
     <div className='terms-and-conditions'>
-      <h4>BongOz Films Ticket Sales Terms &amp; Conditions</h4>
-      <p >By purchasing a ticket through BongOz Films, you agree to these terms. They apply to both the original buyer and anyone using the ticket.</p>
+      <h4>CineTicket Ticket Sales Terms &amp; Conditions</h4>
+      <p >By purchasing a ticket through CineTicket, you agree to these terms. They apply to both the original buyer and anyone using the ticket.</p>
 
-      <p >BongOz Films acts as an agent for the event organizer and operates the website&nbsp;<Link href="http://www.cineticket.com">www.cineticket.com</Link> Please read these terms carefully before buying a ticket.</p>
+      <p >CineTicket acts as an agent for the event organizer and operates the website&nbsp;<Link href="http://www.cineticket.com">www.cineticket.com</Link> Please read these terms carefully before buying a ticket.</p>
 
       <h4>Changes to These Terms</h4>
-      <p>BongOz Films may change these terms at any time. Updated terms apply only to tickets bought after the changes are made.</p>
+      <p>CineTicket may change these terms at any time. Updated terms apply only to tickets bought after the changes are made.</p>
 
       <h4>Site Usage</h4>
       <p>You must use this website lawfully and in accordance with these terms. We reserve the right to reject orders or deny access for any behavior that violates these terms, the law, or the rights of others.</p>
       <h4>Intellectual Property Rights</h4>
       <p>All content on this website, including graphics, logos, and film clips, is protected by copyright and trademark laws.</p>
 
-      <p>You may not modify, copy, or distribute any content from this site without written permission from BongOz Films or its affiliates, except for personal, non-commercial use with the content remaining unchanged.</p>
+      <p>You may not modify, copy, or distribute any content from this site without written permission from CineTicket or its affiliates, except for personal, non-commercial use with the content remaining unchanged.</p>
 
-      <p>The BongOz Films logo and name are trademarks and cannot be used for business purposes without prior written consent.</p>
+      <p>The CineTicket logo and name are trademarks and cannot be used for business purposes without prior written consent.</p>
 
       <h4>Event-Specific Terms</h4>
       <p>Your ticket purchase is also subject to the event organizer&apos;s terms and conditions, which may include rules for entry. These can be found on our website or at ticket outlets, and are available upon request</p>
@@ -117,16 +117,16 @@ function TermDescription() {
 
       <p>When participating in contests or promotions on our site, you agree to any additional terms and conditions for those offers. You also consent to your personal information being used in accordance with those terms.</p>
 
-      <h4>BongOz Films&apos; Role &amp; Responsibilities</h4>
-      <p >BongOz Films is a ticketing agent for event organizers. Unless specified here, any claims about tickets or events are the responsibility of the organizer. BongOz Films is not liable, except as required by law.</p>
+      <h4>CineTicket&apos; Role &amp; Responsibilities</h4>
+      <p >CineTicket is a ticketing agent for event organizers. Unless specified here, any claims about tickets or events are the responsibility of the organizer. CineTicket is not liable, except as required by law.</p>
 
       <p>We may restrict or close accounts of users who violate these terms, harass others, or act inappropriately. This includes accounts created to bypass existing restrictions.</p>
       <h4>Refunds and Exchanges</h4>
-      <p>BongOz Films does not offer refunds or exchanges due to personal circumstances or external factors like bad weather. Refunds or exchanges are only provided if an event is canceled, rescheduled, or significantly relocated, and you can&apos;t or don&apos;t want to attend the new event, or if required by law.</p>
+      <p>CineTicket does not offer refunds or exchanges due to personal circumstances or external factors like bad weather. Refunds or exchanges are only provided if an event is canceled, rescheduled, or significantly relocated, and you can&apos;t or don&apos;t want to attend the new event, or if required by law.</p>
 
       <p >If an event is canceled, we will automatically attempt to refund your original payment method. For rescheduled or relocated events, you must request a refund within 4 weeks of notification or 72 hours before the event, otherwise, you&apos;re considered to have accepted the change.</p>
 
-      <p >Liability for canceled, rescheduled, or relocated events is limited to the ticket price. We may require proof of purchase for any refund or exchange. Neither BongOz Films nor the event organizer is liable for other losses, like travel expenses, unless required by law.</p>
+      <p >Liability for canceled, rescheduled, or relocated events is limited to the ticket price. We may require proof of purchase for any refund or exchange. Neither CineTicket nor the event organizer is liable for other losses, like travel expenses, unless required by law.</p>
 
       <p >We only replace lost, stolen, damaged, or destroyed tickets if their authenticity can be verified (including proof of purchase) and you notify us before the event. A fee may apply. Tickets for events with unallocated seating cannot be replaced.</p>
 
@@ -143,7 +143,7 @@ function TermDescription() {
         <li>Cameras and recording devices may be prohibited.</li>
         <li>Recording films is illegal. We&apos;ll report any suspected offenders. Filming in other areas is generally not allowed, unless otherwise stated.</li>
         <li>You may be searched before entering.</li>
-        <li>By attending, you agree to be filmed or recorded, and allow the organizer and BongOz Films to use your image and voice for any purpose, without compensation.</li>
+        <li>By attending, you agree to be filmed or recorded, and allow the organizer and CineTicket to use your image and voice for any purpose, without compensation.</li>
         <li>You must comply with all government regulations for attending events.</li>
         <li>You are responsible for knowing the contact details of your group and providing them to the government for contact tracing if asked.</li>
         <li>You accept all risks associated with COVID-19 or similar diseases when attending the event.</li>
@@ -153,23 +153,23 @@ function TermDescription() {
 
 
       <h4>Ticket Authenticity</h4>
-      <p>Entry may be refused if your ticket&apos;s authenticity is in doubt, including if it&apos;s damaged, altered, or not purchased from an authorized seller like BongOz Films.</p>
+      <p>Entry may be refused if your ticket&apos;s authenticity is in doubt, including if it&apos;s damaged, altered, or not purchased from an authorized seller like CineTicket.</p>
       <h4>Ticket Resale Restrictions</h4>
-      <p >Reselling tickets for profit or using them for promotions is prohibited without written permission from BongOz Films and the event organizer. Tickets resold in this way may be canceled without refund, and entry to the event may be refused. We will notify you if this happens.</p>
+      <p >Reselling tickets for profit or using them for promotions is prohibited without written permission from CineTicket and the event organizer. Tickets resold in this way may be canceled without refund, and entry to the event may be refused. We will notify you if this happens.</p>
 
       <p >WARNING: Scalping (reselling tickets at inflated prices) may be illegal and subject to penalties.</p>
 
       <h4>Ticket Collection &amp; Delivery</h4>
-      <p >Please allow enough time for ticket collection or delivery. Options will be provided during checkout. BongOz Films may change delivery to &quot;venue collect&quot; to prevent scalping.</p>
+      <p >Please allow enough time for ticket collection or delivery. Options will be provided during checkout. CineTicket may change delivery to &quot;venue collect&quot; to prevent scalping.</p>
 
       <p >If you have a concession ticket, bring valid ID for collection and entry to the event.</p>
 
       <h4>Ticket Purchase Limits</h4>
-      <p>There may be a limit on how many tickets you can buy for an event. If you exceed the limit, BongOz Films may cancel your orders without notice. This is to ensure fair access and prevent scalping.</p>
+      <p>There may be a limit on how many tickets you can buy for an event. If you exceed the limit, CineTicket may cancel your orders without notice. This is to ensure fair access and prevent scalping.</p>
       <h4>Pricing Or System Errors</h4>
       <p>While we strive for accuracy, pricing errors may occur. We may cancel orders due to such errors, but we&apos;ll try to contact you to offer purchase at the correct price.&nbsp;</p>
       <h4>Reprocessing Fees</h4>
-      <p >If BongOz Films has to reprocess your ticket due to an error you made, you may be charged for the actual costs we incur, including any fees from third parties.</p>
+      <p >If CineTicket has to reprocess your ticket due to an error you made, you may be charged for the actual costs we incur, including any fees from third parties.</p>
 
       <h4>Our Website &amp; Privacy</h4>
       <p>Our Website Terms of Use and Privacy Policy are part of these ticket sale terms and conditions. You can find them on our website.</p>

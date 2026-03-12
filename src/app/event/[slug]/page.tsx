@@ -19,7 +19,8 @@ type GroupedShow = {
   times: Array<{ id: string; label: string }>;
 };
 
-export default function Event({ params }: EventProps) {
+export default async function Event({ params }: EventProps) {
+  const { slug } = await params;
   const [event, setEvent] = useState<EventEntity | null>(null);
   const [relatedEvents, setRelatedEvents] = useState<EventEntity[]>([]);
   const [groupedShows, setGroupedShows] = useState<GroupedShow[]>([]);
@@ -36,8 +37,8 @@ export default function Event({ params }: EventProps) {
       try {
         setIsLoading(true);
         const [eventRes, relatedRes] = await Promise.all([
-          cineticketApi.getEventBySlug(params.slug),
-          cineticketApi.getRelatedEvents(params.slug),
+          cineticketApi.getEventBySlug(slug),
+          cineticketApi.getRelatedEvents(slug),
         ]);
         if (!mounted) return;
         setEvent(eventRes);
@@ -74,7 +75,7 @@ export default function Event({ params }: EventProps) {
     return () => {
       mounted = false;
     };
-  }, [params.slug]);
+  }, [slug]);
 
   useEffect(() => {
     let mounted = true;
@@ -124,7 +125,7 @@ export default function Event({ params }: EventProps) {
       });
       const orderId = order?.id ?? order?.data?.id;
       if (!orderId) throw new Error("Order creation failed");
-      const paymentSession = await cineticketApi.startStripePayment({ orderId, eventSlug: params.slug });
+      const paymentSession = await cineticketApi.startStripePayment({ orderId, eventSlug: slug });
       const checkoutUrl = paymentSession?.checkoutUrl ?? paymentSession?.data?.checkoutUrl;
       if (!checkoutUrl) throw new Error("Payment session failed");
       window.location.href = checkoutUrl;
@@ -217,7 +218,7 @@ export default function Event({ params }: EventProps) {
               </div>
               <SeatSelection
                 rows={seatRows as any}
-                onConfirm={() => {}}
+                onConfirm={() => { }}
                 onSelectionChange={(seats) => setSelectedSeats(seats)}
               />
             </section>

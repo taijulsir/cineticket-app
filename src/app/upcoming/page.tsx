@@ -10,8 +10,8 @@ const CardAny: any = Card;
 import Ads from "../(Home)/Group/Ads/Ads";
 
 // export const metadata = {
-//   title: 'Upcoming | BongOz Films',
-//   description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
+//   title: 'Upcoming | CineTicket',
+//   description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
 // }
 
 function Upcoming() {

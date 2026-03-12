@@ -2,8 +2,8 @@ import TermDescription from "@/Partials/TermsAndConditions/TermDescription/TermD
 import TermsTitle from "@/Partials/TermsAndConditions/TermsTitle/TermsTitle"
 
 export const metadata = {
-  title: 'Terms-conditions | BongOz Films',
-  description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
+  title: 'Terms-conditions | CineTicket',
+  description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
 }
 
 function page() {

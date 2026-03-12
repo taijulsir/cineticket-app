@@ -6,8 +6,8 @@ import { RiCloseCircleLine } from "react-icons/ri";
 
 
 export const metadata = {
-    title: 'Payment | BongOz Films',
-    description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
+    title: 'Payment | CineTicket',
+    description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
 }
 function Page() {
     return (

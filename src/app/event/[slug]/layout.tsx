@@ -9,13 +9,13 @@ export async function generateMetadata({ params }: { params: any }) {
     const event = payload?.success ? payload.data : payload;
     return {
       title: `${event?.name || 'Event'} | CineTicket`,
-      description: 'BongOz Films - Bringing Quality Movie Experiences to your Neighborhood',
+      description: 'CineTicket - Bringing Quality Movie Experiences to your Neighborhood',
     };
   } catch (error) {
     const movie = mockMovies.find(m => m.slug === params.slug);
     return {
       title: `${movie?.title || 'Event'} | CineTicket`,
-      description: movie?.description || 'BongOz Films - Bringing Quality Movie Experiences to your Neighborhood',
+      description: movie?.description || 'CineTicket - Bringing Quality Movie Experiences to your Neighborhood',
     };
   }
 }

@@ -4,7 +4,7 @@ import Link from "next/link"
 function FooterContent() {
     return (
         <div className="flex-row md:flex justify-center items-center gap-3 text-center">
-            <p className="">Copyright @ 2024 BongOz Films</p>
+            <p className="">Copyright @ 2024 CineTicket</p>
             <p className="hidden sm:block">|</p>
             <p className="py-2">All Rights Reserved</p>
             <p className="hidden sm:block">|</p>
