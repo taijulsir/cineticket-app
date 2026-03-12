@@ -2,7 +2,7 @@ import { useAuth } from "@/context/AuthContext/AuthContext";
 
 function MyProfile() {
 
-  const {customer} = useAuth()
+  const { customer } = (useAuth() as any) || {};
 
   return (
     <div className="w-full">

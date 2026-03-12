@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 
-function MobileAds({ ads }) {
+function MobileAds({ ads }: { ads?: any[] }) {
 
     const [emblaRef] = useEmblaCarousel({ loop: true }, [
         Autoplay({ playOnInit: true, delay: 3000 }),

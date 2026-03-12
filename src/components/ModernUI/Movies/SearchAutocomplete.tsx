@@ -1,18 +1,19 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import Image from 'next/image';
 import { Search, X, Star } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SearchAutocomplete = ({ movies, searchQuery, setSearchQuery }) => {
+const SearchAutocomplete = ({ movies, searchQuery, setSearchQuery }: { movies?: any[]; searchQuery?: string; setSearchQuery?: any }) => {
     const [isFocused, setIsFocused] = useState(false);
-    const wrapperRef = useRef(null);
+    const wrapperRef = useRef<any>(null);
 
-    const suggestions = searchQuery.length >= 2
-        ? movies.filter((m) => {
-            const q = searchQuery.toLowerCase();
-            const titleMatch = m.title.toLowerCase().includes(q);
-            const castMatch = m.cast?.some((c) => c.name.toLowerCase().includes(q));
+    const suggestions = (searchQuery?.length || 0) >= 2 && Array.isArray(movies)
+        ? movies.filter((m: any) => {
+            const q = (searchQuery || "").toLowerCase();
+            const titleMatch = (m.title || "").toLowerCase().includes(q);
+            const castMatch = Array.isArray(m.cast) && m.cast.some((c: any) => (c.name || "").toLowerCase().includes(q));
             return titleMatch || castMatch;
         }).slice(0, 6)
         : [];
@@ -20,7 +21,7 @@ const SearchAutocomplete = ({ movies, searchQuery, setSearchQuery }) => {
     const showDropdown = isFocused && suggestions.length > 0;
 
     useEffect(() => {
-        const handleClickOutside = (e) => {
+        const handleClickOutside = (e: any) => {
             if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
                 setIsFocused(false);
             }
@@ -65,10 +66,12 @@ const SearchAutocomplete = ({ movies, searchQuery, setSearchQuery }) => {
                                 onClick={() => setIsFocused(false)}
                                 className="flex items-center gap-3.5 px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-b-0 group"
                             >
-                                <img
+                                <Image
                                     src={movie.posterUrl}
                                     alt={movie.title}
-                                    className="w-10 h-14 object-cover rounded-lg flex-shrink-0"
+                                    width={40}
+                                    height={56}
+                                    className="object-cover rounded-lg flex-shrink-0"
                                 />
                                 <div className="flex-1 min-w-0">
                                     <p className="text-white text-sm font-bold truncate group-hover:text-primary transition-colors">

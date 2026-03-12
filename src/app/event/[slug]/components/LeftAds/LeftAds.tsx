@@ -1,7 +1,7 @@
 import AdsCarousel from "@/components/AdsCarousel/AdsCarousel";
 
 
-function LeftAds({ ads }) {
+function LeftAds({ ads }: { ads: any[] }) {
   return (
     <AdsCarousel ads={ads} reversed={true} />
   );

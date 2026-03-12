@@ -161,7 +161,7 @@ const faqItems = [
 ];
 
 /* ─── Offer Coupon Card ─────────────────────────────── */
-function OfferCoupon({ offer, index }) {
+function OfferCoupon({ offer, index }: { offer?: any; index?: any }) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -257,7 +257,7 @@ function OfferCoupon({ offer, index }) {
 }
 
 /* ─── FAQ Accordion Item ────────────────────────────── */
-function FaqItem({ item, index }) {
+function FaqItem({ item, index }: { item?: any; index?: any }) {
     const [open, setOpen] = useState(false);
     return (
         <motion.div
@@ -328,8 +328,8 @@ export default function OffersPage() {
                 const response = await axiosPublicInstance.get("/promo-codes/offers");
                 const payload = response?.data?.data ?? response?.data ?? {};
                 const backendOffers = Array.isArray(payload.offers) ? payload.offers : [];
-                const decorated = backendOffers.map((item, idx) => {
-                    const style = visuals[item.categoryKey] || visuals.TICKET_DISCOUNTS;
+                const decorated = backendOffers.map((item: any, idx: any) => {
+                    const style = (visuals as any)[item.categoryKey] || visuals.TICKET_DISCOUNTS;
                     return {
                         id: item.id ?? idx + 1,
                         title: item.title,

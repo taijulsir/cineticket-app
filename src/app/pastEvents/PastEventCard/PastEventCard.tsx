@@ -6,8 +6,8 @@ import Link from "next/link";
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 import { IMAGE_URL } from "@/Utilities/APIs/APIs";
 
-function PastEventCard({ status }) {
-    const [movies, setMovies] = useState([]);
+function PastEventCard({ status }: { status?: any }) {
+    const [movies, setMovies] = useState<any[]>([]);
     const axiosPublicInstance = useAxiosPublicInstance();
 
     useEffect(() => {

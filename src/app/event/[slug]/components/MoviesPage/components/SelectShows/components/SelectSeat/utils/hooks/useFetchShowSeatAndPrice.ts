@@ -1,16 +1,16 @@
 import useAxiosPublicInstance from '@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance';
 import { useState, useEffect } from 'react';
 
-const useFetchShowSeatsAndPrice = (selectedShows, toggleFetch) => {
+const useFetchShowSeatsAndPrice = (selectedShows: any, toggleFetch: any) => {
     const axiosPublicInstance = useAxiosPublicInstance();
-    const [numberOfRows, setNumberOfRows] = useState('');
-    const [numberOfColumns, setNumberOfColumns] = useState('');
-    const [seats, setSeats] = useState([]);
-    const [showsPrice, setShowsPrice] = useState([]);
+    const [numberOfRows, setNumberOfRows] = useState<number>(0);
+    const [numberOfColumns, setNumberOfColumns] = useState<number>(0);
+    const [seats, setSeats] = useState<any[]>([]);
+    const [showsPrice, setShowsPrice] = useState<any[]>([]);
 
 
     useEffect(() => {
-        async function fetchShowSeatsAndPrice(id) {
+    async function fetchShowSeatsAndPrice(id: any) {
             try {
                 const { data } = await axiosPublicInstance.get(`/events/showSeatAndPrice/${id}`);
                 setNumberOfRows(data?.shows?.hall?.numberOfRows);

@@ -13,7 +13,7 @@ function UserAuth() {
   // const [showForgetPassword, setShowForgetPassword] = useState(true);
   // const [showModal, setShowModal] = useState(false);
 
-  const { customer, logout, setShowModal, showModal, showLoginModal } = useAuth();
+  const { customer, logout, setShowModal, showModal, showLoginModal } = (useAuth() as any) || {};
 
   const toggleSignUp = () => {
     setShowSignUp((prevState) => !prevState);

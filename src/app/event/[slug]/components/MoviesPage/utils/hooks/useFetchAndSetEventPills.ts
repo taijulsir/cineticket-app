@@ -1,6 +1,6 @@
 import useFetchData from "./useFetchData";
 
-function useFetchAndSetEventPills({eventId, selectedCountry, selectedState, selectedCity, selectedTheater}) {
+function useFetchAndSetEventPills({eventId, selectedCountry, selectedState, selectedCity, selectedTheater}: any) {
     const { data: countries, error: countriesError } = useFetchData(
         eventId ? `events/getAllCountryForEventShows?event=${eventId}` : null,
         [eventId]

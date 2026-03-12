@@ -1,9 +1,9 @@
 export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL;
 
 export const pageview = () => {
-  window.fbq('track', 'PageView');
+  (window as any).fbq?.('track', 'PageView');
 };
 
-export const event = (name, options = {}) => {
-  window.fbq('track', name, options);
+export const event = (name: any, options: any = {}) => {
+  (window as any).fbq?.('track', name, options);
 };

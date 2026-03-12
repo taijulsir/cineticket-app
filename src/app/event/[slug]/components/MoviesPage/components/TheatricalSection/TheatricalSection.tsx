@@ -4,8 +4,8 @@ import ToofanAtHoytsInAustralia from './components/ToofanAtHoytsInAustralia/Toof
 import useAxiosPublicInstance from '@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance';
 import { ErrorMessage } from '../SelectShows/components/Pricing/components/ErrorMessage';
 
-function TheatricalSection({ event }) {
-    const { slug, theatricalLink } = event;
+function TheatricalSection({ event }: { event?: any }) {
+    const { slug, theatricalLink } = (event || {}) as any;
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -22,9 +22,9 @@ function TheatricalSection({ event }) {
                 return;
             }
             const itemData = {};
-            if (name) itemData.name = name;
-            if (email) itemData.email = email
-            if (mobileNumber) itemData.mobileNumber = mobileNumber;
+            if (name) (itemData as any).name = name;
+            if (email) (itemData as any).email = email
+            if (mobileNumber) (itemData as any).mobileNumber = mobileNumber;
 
             try {
                 const response = await axiosPublicInstance.post('/events/toofanAtHoytsInAustralia', itemData)
@@ -39,7 +39,8 @@ function TheatricalSection({ event }) {
                     console.error('Failed to save data');
                 }
             } catch (error) {
-                setError(error)
+                const msg = ((error as any)?.message) || String(error);
+                setError(msg as any);
                 console.error('An error occurred:', error);
             }
         } else {

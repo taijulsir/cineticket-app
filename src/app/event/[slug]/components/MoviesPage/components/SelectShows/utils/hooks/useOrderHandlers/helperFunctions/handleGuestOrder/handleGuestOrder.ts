@@ -17,10 +17,10 @@ export const handleGuestOrder = async ({
     axiosPublicInstance,
     triggerFetch,
     eventCurrency
-}) => {
+}: any) => {
     try {
 
-        const orderData = createOrderPayload({
+        const orderData: any = createOrderPayload({
             name, mobileNumber, email,
             total, discount,
             eventId, selectedShows, selectedSeats,
@@ -28,23 +28,25 @@ export const handleGuestOrder = async ({
         })
 
 
-        const orderRes = await axiosPublicInstance.post('/orders', orderData);
-        const orderPayload = orderRes.data?.data ?? orderRes.data;
+        const orderRes: any = await axiosPublicInstance.post('/orders', orderData);
+        const orderPayload: any = orderRes.data?.data ?? orderRes.data;
         const orderId = orderPayload?.id;
         if (!orderId) {
             handleOrderError('Order creation failed', setError, setSelectedSeats, triggerFetch);
             return;
         }
 
-        const paymentRes = await axiosPublicInstance.post('/payments/stripe/start', { orderId });
-        const checkoutUrl = paymentRes.data?.data?.checkoutUrl ?? paymentRes.data?.checkoutUrl;
+        const paymentRes: any = await axiosPublicInstance.post('/payments/stripe/start', { orderId });
+        const checkoutUrl = (paymentRes.data?.data?.checkoutUrl ?? paymentRes.data?.checkoutUrl) as any;
         if (!checkoutUrl) {
             handleOrderError('Stripe session failed', setError, setSelectedSeats, triggerFetch);
             return;
         }
-        window.location.href = checkoutUrl;
+        if (typeof window !== 'undefined') {
+            window.location.href = checkoutUrl;
+        }
     } catch (error) {
         console.error('Guest order error:', error);
-        setError(error.message);
+        setError?.(((error as any)?.message) || String(error));
     }
 };

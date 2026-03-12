@@ -1,8 +1,8 @@
 "use client";
 import SignIn from "@/components/SignIn/SignIn";
 import SignUp from "@/components/SignUp/SignUp";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button as ButtonAny } from "@/components/ui/button";
+import { Dialog as DialogAny, DialogContent as DialogContentAny, DialogTrigger as DialogTriggerAny } from "@/components/ui/dialog";
 import { useAuth } from "@/context/AuthContext/AuthContext";
 import { useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
@@ -23,7 +23,7 @@ function UserAuth() {
   // const [showForgetPassword, setShowForgetPassword] = useState(true);
   // const [showModal, setShowModal] = useState(false);
 
-  const { customer, logout, setShowModal, showModal, showLoginModal } = useAuth();
+  const { customer, logout, setShowModal, showModal, showLoginModal } = (useAuth() as any) || {};
 
   const toggleSignUp = () => {
     setShowSignUp((prevState) => !prevState);
@@ -41,35 +41,34 @@ function UserAuth() {
     <>
 
       {!(customer && customer.isVerified) && (
-        <Dialog open={showModal} onOpenChange={setShowModal}>
-          <DialogTrigger asChild>
-            <button variant="signin" size="lg" onClick={() => setShowModal(true)} className="font-normal px-5 py-2 lg:px-10 bg-transform flex justify-center items-center font-mono border border-[#e7ad0459] text-[#e7ad04d9] text-lg rounded-md shadow-md transition duration-500 hover:shadow-btnHover active:shadow-active" >
-              Sign in
-            </button>
-          </DialogTrigger>
+        <>
+          <button onClick={() => setShowModal(true)} className="font-normal px-5 py-2 lg:px-10 bg-transform flex justify-center items-center font-mono border border-[#e7ad0459] text-[#e7ad04d9] text-lg rounded-md shadow-md transition duration-500 hover:shadow-btnHover active:shadow-active" >
+            Sign in
+          </button>
+
           {showModal && (
-            <DialogContent className="bg-[#212529] border-none">
-              <div className="pb-16">
-                {
-                  (showLoginModal || showSignUp) ? (
+            <div className="fixed inset-0 z-50 flex items-center justify-center">
+              <div className="bg-[#212529] border-none rounded-lg p-6">
+                <div className="pb-16">
+                  {(showLoginModal || showSignUp) ? (
                     <SignIn setShowModal={setShowModal} toggleSignUp={toggleSignUp} />
                   ) : (
-                    <SignUp showModal={showModal} setShowModal={setShowModal} toggleSignUp={toggleSignUp} />
-                  )
-                }
+                    <SignUp showModal={showModal} setShowModal={setShowModal} toggleSignUp={toggleSignUp} setShowSignUp={setShowSignUp} />
+                  )}
+                </div>
               </div>
-            </DialogContent>
+            </div>
           )}
-        </Dialog>
+        </>
       )}
 
 
       {customer && customer.isVerified && (
         <>
           <div className="flex justify-center items-center gap-4 md:hidden lg:hidden">
-            <Button variant="signin" size="lg" onClick={handleLogout}>
+            <ButtonAny variant="signin" size="lg" onClick={handleLogout}>
               Logout
-            </Button>
+            </ButtonAny>
           </div>
 
           <div className="hidden md:flex lg:flex nav-item dropdown">

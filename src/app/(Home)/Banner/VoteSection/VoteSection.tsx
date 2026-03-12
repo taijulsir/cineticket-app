@@ -4,8 +4,8 @@ import AppContext from '@/context/AppContext';
 import React, { useContext } from 'react'
 import MovieVoteCard from './MovieVoteCard/MovieVoteCard';
 
-function VoteSection({voteToBring}) {
-    const { isLoading } = useContext(AppContext);
+function VoteSection({voteToBring}: { voteToBring: any[] }) {
+    const { isLoading } = useContext(AppContext)!;
     return (
         <div id="vote-section" className="w-10/12 mx-auto pb-4 md:pb-10">
             <div className="h-[40px] lg:h-[100px]"></div>

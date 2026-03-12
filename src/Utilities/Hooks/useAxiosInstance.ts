@@ -3,7 +3,8 @@ import axios from "axios";
 import { useMemo } from "react";
 
 function useAxiosInstance() {
-  const { customer } = useAuth();
+  const auth = useAuth() as any;
+  const customer = auth?.customer;
 
   const axiosInstance = useMemo(
     () =>

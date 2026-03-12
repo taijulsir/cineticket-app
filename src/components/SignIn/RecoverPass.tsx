@@ -17,7 +17,7 @@ function RecoverPass() {
       username: "",
     },
   });
-  function submitFunc(values) {
+  const submitFunc = (values: Record<string, any>) => {
   }
   return (
     <div className="px-0 md:px-5 lg:px-36">

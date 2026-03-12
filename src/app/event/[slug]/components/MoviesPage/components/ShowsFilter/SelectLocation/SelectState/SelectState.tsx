@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import SelectLocation from '../SelectLocation';
 
-function SelectState({ headerText,states, selectedState, setSelectedState, api }) {
+function SelectState({ headerText,states, selectedState, setSelectedState, api }: { headerText?: any, states?: any[], selectedState?: any, setSelectedState?: any, api?: any }) {
     useEffect(() => {
-        const isNSWExist = states?.find((state) => state.name.toLowerCase() === "nsw")
+        if (!states || states.length === 0) return;
+        const isNSWExist = states?.find((state: any) => (state?.name || '').toLowerCase() === "nsw")
         if (isNSWExist) {
-            setSelectedState(isNSWExist);
+            setSelectedState?.(isNSWExist);
         } else {
-            setSelectedState(states[0]);
+            setSelectedState?.(states[0]);
         }
     }, [states]);
 

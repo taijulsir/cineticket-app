@@ -2,7 +2,7 @@ import BannerButton from "@/Partials/Sections/BannerSection/BannerButton/BannerB
 import BannerContent from "@/Partials/Sections/BannerSection/BannerContent/BannerContent"
 import { MdKeyboardDoubleArrowRight } from "react-icons/md"
 
-function BannerSliderContent({ slider, setShowWatchTrailerModal, setYoutubeId }) {
+function BannerSliderContent({ slider, setShowWatchTrailerModal, setYoutubeId }: { slider: any; setShowWatchTrailerModal: () => void; setYoutubeId: (id: string) => void }) {
     return (
         <div className="flex flex-col w-full lg:w-[60%]  justify-start items-start">
             <BannerContent slider={slider} />

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 
-function useFetchData(url, dependencies = []) {
-    const axiosPublicInstance = useAxiosPublicInstance();
-    const [data, setData] = useState([]);
-    const [error, setError] = useState("");
+function useFetchData(url: any, dependencies: any[] = []) {
+    const axiosPublicInstance: any = useAxiosPublicInstance();
+    const [data, setData] = useState<any[]>([]);
+    const [error, setError] = useState<string>("");
 
     useEffect(() => {
         const fetchData = async () => {

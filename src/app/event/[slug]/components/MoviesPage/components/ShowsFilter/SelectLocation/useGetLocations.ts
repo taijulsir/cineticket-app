@@ -1,10 +1,10 @@
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 import { useEffect, useState } from "react";
 
-function useGetLocations(api) {
+function useGetLocations(api: any) {
 
     const axiosPublicInstance = useAxiosPublicInstance();
-    const [locations, setLocations] = useState([])
+    const [locations, setLocations] = useState<any[]>([])
     useEffect(() => {
 
         async function fetchData() {
@@ -14,7 +14,7 @@ function useGetLocations(api) {
                 const { data: countriesData } = await axiosPublicInstance.get(
                     `${api}`
                 );
-                setLocations(countriesData);
+                setLocations(countriesData || []);
 
             } catch (error) {
                 console.error("Error fetching data:", error);

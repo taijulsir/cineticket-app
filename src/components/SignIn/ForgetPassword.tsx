@@ -15,7 +15,8 @@ import FormInput from "../FormInput/FormInput";
 const formSchema = z.object({
   email: z.string().min(2).max(50),
 });
-function ForgetPassword({ showForgetPassword, setShowForgetPassword }) {
+function ForgetPassword(props: any) {
+  const { showForgetPassword, setShowForgetPassword } = props || {};
   const axiosPublicInstance = useAxiosPublicInstance()
 
   const [verifyEmail, setVerifyEmail] = useState(false)
@@ -28,7 +29,7 @@ function ForgetPassword({ showForgetPassword, setShowForgetPassword }) {
       email: "",
     }
   })
-  async function submitFunc(values) {
+  const submitFunc = async (values: any) => {
     const email = values.email
     const { data } = await axiosPublicInstance.post(FORGOT_PASSWORD_API, { email })
     if (data.email) {

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 
 function Icons() {
-  const [socialLinks, setSocialLinks] = useState("")
+  const [socialLinks, setSocialLinks] = useState<any[]>([])
   const axiosPublicInstance = useAxiosPublicInstance()
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Icons() {
     homeData();
   }, [axiosPublicInstance]);
 
-  const getSocialLinks = (name) => socialLinks && socialLinks.length> 0 && socialLinks?.find(social => social.name === name)?.link || '';
+    const getSocialLinks = (name: any) => socialLinks && socialLinks.length> 0 && socialLinks?.find((social: any) => social.name === name)?.link || '';
   return (
     <div className="flex justify-center items-center gap-4 pt-6 md:pt-0">
           <SocialLink link={getSocialLinks("Facebook")} icon={FaFacebookF} />

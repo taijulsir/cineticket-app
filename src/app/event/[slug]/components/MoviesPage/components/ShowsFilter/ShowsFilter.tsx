@@ -15,7 +15,7 @@ function ShowsFilter({
   selectedCity,
   setSelectedCity,
 
-}) {
+}: any) {
   return (
     <>
       {countries?.length > 0 && (

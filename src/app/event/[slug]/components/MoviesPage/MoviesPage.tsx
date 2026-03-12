@@ -19,7 +19,7 @@ import { useEffect } from "react";
 
 
 
-function MoviesPage({ event, statistics, ads }) {
+function MoviesPage({ event, statistics, ads }: { event?: any, statistics?: any, ads?: any }) {
 
   const {
     error, setError,
@@ -75,7 +75,7 @@ function MoviesPage({ event, statistics, ads }) {
                   />
 
                   {showModal && (
-                    <Modal setShowModalContent={setShowModal}>
+                    <Modal setShowModalContent={setShowModal} extraClass={""}>
                       <SelectShowsModal
                         eventSlug={event?.slug}
                         shows={shows}

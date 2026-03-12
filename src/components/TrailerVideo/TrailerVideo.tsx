@@ -1,13 +1,14 @@
 
-function TrailerVideo({ link }) {
+function TrailerVideo(props: any) {
+  const { link } = props || {};
 
-  function getVideoId(url) {
+  function getVideoId(url: any) {
     let videoId = "";
-    if (url.includes("youtu.be")) {
-      videoId = url.split("youtu.be/")[1].split("?")[0];
-    } else if (url.includes("youtube.com")) {
+    if (url?.includes("youtu.be")) {
+      videoId = (url.split("youtu.be/")[1] || "").split("?")[0];
+    } else if (url?.includes("youtube.com")) {
       const urlParams = new URLSearchParams(new URL(url).search);
-      videoId = urlParams.get("v");
+      videoId = urlParams.get("v") ?? "";
     }
     return videoId;
   }

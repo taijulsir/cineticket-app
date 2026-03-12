@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Search, Filter, Calendar, Layers, ChevronDown, Clock, Star } from 'lucide-react';
 import Link from 'next/link';
 import { Movie, mockMovies } from '@/Utilities/mockData/mockMovies';
@@ -189,7 +190,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ movies = mockMovies }) => {
                                                 href={`/event/${movie.slug}`}
                                                 className="flex items-center gap-4 p-3 hover:bg-white/10 rounded-xl transition-colors group"
                                             >
-                                                <img src={movie.posterUrl} alt={movie.title} className="w-12 h-16 object-cover rounded-lg shadow-sm border border-white/5 group-hover:border-primary/30 transition-colors" />
+                                                <Image src={movie.posterUrl} alt={movie.title} width={48} height={64} className="object-cover rounded-lg shadow-sm border border-white/5 group-hover:border-primary/30 transition-colors" />
                                                 <div className="flex-1 min-w-0">
                                                     <h4 className="text-white text-sm font-black truncate group-hover:text-primary transition-colors">{movie.title}</h4>
                                                     <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-500 font-bold">
@@ -205,7 +206,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ movies = mockMovies }) => {
                                         ))
                                     ) : (
                                         <div className="p-6 text-center">
-                                            <p className="text-gray-500 font-bold text-sm">No movies found for "{searchQuery}"</p>
+                                            <p className="text-gray-500 font-bold text-sm">No movies found for &quot;{searchQuery}&quot;</p>
                                         </div>
                                     )}
                                 </div>

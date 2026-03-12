@@ -2,7 +2,7 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 
-const MovieGrid = ({ movies, title }) => {
+const MovieGrid = ({ movies, title }: { movies?: any[]; title?: any }) => {
     return (
         <section className="py-12 px-6 md:px-12 lg:px-24 space-y-8">
             <div className="flex items-center justify-between">

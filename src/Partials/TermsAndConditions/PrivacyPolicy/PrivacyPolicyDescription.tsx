@@ -28,7 +28,7 @@ function PrivacyPolicyDescription() {
                 <li>Create an account: You provide information like your name, email, and phone number.</li>
                 <li>Make a purchase: We collect transaction details to process your payment.</li>
                 <li>Interact with our website: We may collect information on your preferences and how you use our site.</li>
-                <li>Contact us: If you reach out to us, we'll store your contact details.</li>
+                <li>Contact us: If you reach out to us, we&apos;ll store your contact details.</li>
             </ul>
 
 
@@ -89,7 +89,7 @@ function PrivacyPolicyDescription() {
             <p >You can opt-out of receiving direct marketing communications at any timeby:</p>
 
             <ul>
-                <li>Clicking the "unsubscribe" link in any email communication.</li>
+                <li>Clicking the &quot;unsubscribe&quot; link in any email communication.</li>
                 <li>Contacting us at info@cineticket.com and requesting to be removed from our mailing list.</li>
 
             </ul>

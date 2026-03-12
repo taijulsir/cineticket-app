@@ -11,7 +11,7 @@ import { IMAGE_URL } from "@/Utilities/APIs/APIs";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-function SellingCard({ nowSelling }) {
+function SellingCard({ nowSelling }: { nowSelling?: any[] }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { Star, Clock, Calendar, Globe, Share2, Heart } from 'lucide-react';
+import Image from 'next/image';
 
 import { Movie } from '@/Utilities/mockData/mockMovies';
 
@@ -36,9 +37,11 @@ const MovieDetailHeader: React.FC<MovieDetailHeaderProps> = ({ movie }) => {
                 <div className="flex flex-col md:flex-row gap-10 items-end">
                     {/* Poster */}
                     <div className="hidden md:block w-64 md:mt-[76px] flex-none animate-in fade-in slide-in-from-bottom-10 duration-700">
-                        <img
+                        <Image
                             src={movie.posterUrl}
                             alt={movie.title}
+                            width={256}
+                            height={384}
                             className="w-full rounded-2xl shadow-2xl border border-white/10"
                         />
                     </div>
@@ -55,7 +58,7 @@ const MovieDetailHeader: React.FC<MovieDetailHeaderProps> = ({ movie }) => {
                                 {movie.title}
                             </h1>
                             {movie.tagline && (
-                                <p className="text-gray-400 text-base md:text-lg italic font-medium">"{movie.tagline}"</p>
+                                <p className="text-gray-400 text-base md:text-lg italic font-medium">&quot;{movie.tagline}&quot;</p>
                             )}
                         </div>
 

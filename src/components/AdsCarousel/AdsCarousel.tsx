@@ -4,7 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { IMAGE_URL } from "@/Utilities/APIs/APIs";
 
-function AdsCarousel({ ads, reversed }) {
+function AdsCarousel({ ads, reversed }: { ads?: any[]; reversed?: boolean }) {
     const [emblaRef] = useEmblaCarousel({ loop: true }, [
         Autoplay({ playOnInit: true, delay: 3000 }),
     ]);

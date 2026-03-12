@@ -4,9 +4,10 @@ import AppContext from '@/context/AppContext';
 import { useContext, useEffect, useState } from 'react';
 
 function useHomeFetchHook() {
-    const {toggleFetch,setIsLoading} = useContext(AppContext)
+    const appCtx = useContext(AppContext) as any;
+    const { toggleFetch, setIsLoading } = appCtx || {};
     const axiosPublicInstance = useAxiosPublicInstance()
-    const [homePageData, setHomePageData] = useState(null);
+    const [homePageData, setHomePageData] = useState<any>(null);
     useEffect(() => {
         async function homeData() {
             const [events, heroSliders, ads, socialLinks] = await Promise.all([

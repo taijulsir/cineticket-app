@@ -5,7 +5,7 @@ function SelectTheater({
     selectedTheater,
     setSelectedTheater,
     setSeats
-}) {
+}: { theaters?: any[]; selectedTheater?: string; setSelectedTheater?: (v: string) => void; setSeats?: any }) {
 
 
     return (
@@ -17,8 +17,8 @@ function SelectTheater({
                 <select
                     value={selectedTheater}
                     onChange={(e) => {
-                        setSelectedTheater(e.target.value)
-                        setSeats([])
+                        setSelectedTheater?.(e.target.value)
+                        setSeats?.([])
                     }}
                     style={{
                         borderRadius: "5px",

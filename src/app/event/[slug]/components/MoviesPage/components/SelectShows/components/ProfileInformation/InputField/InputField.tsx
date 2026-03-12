@@ -1,6 +1,18 @@
 "use client"
 
-function InputField({ label, type, value, onChange }) {
+import React from "react";
+
+function InputField({
+    label,
+    type,
+    value,
+    onChange,
+}: {
+    label?: string;
+    type?: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
     return (
         <div className="mb-4">
             <label className="block text-white">{label}</label>

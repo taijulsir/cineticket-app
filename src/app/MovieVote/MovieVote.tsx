@@ -4,8 +4,8 @@ import CardSkeleton from "@/components/SliderEventCard/CardSkeleton/CardSkeleton
 import AppContext from "@/context/AppContext";
 import { useContext } from "react";
 
-function MovieVote({ voteToBring }) {
-  const { isLoading } = useContext(AppContext);
+function MovieVote({ voteToBring }: { voteToBring?: any }) {
+  const { isLoading } = useContext(AppContext) as any;
   return (
     <>
       <div className="w-10/12 mx-auto">

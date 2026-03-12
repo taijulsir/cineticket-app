@@ -1,6 +1,7 @@
 
+import React from "react";
 
-function SeatLayout({ children, rows, columns }) {
+function SeatLayout({ children, rows, columns }: { children?: React.ReactNode; rows: number; columns: number }) {
     return (
         <div
             className="grid gap-0.5 h-full w-full overflow-hidden"
@@ -13,7 +14,7 @@ function SeatLayout({ children, rows, columns }) {
 
         </div>
 
-    )
+    );
 }
 
-export default SeatLayout
+export default SeatLayout;

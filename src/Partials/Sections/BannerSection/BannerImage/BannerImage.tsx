@@ -1,7 +1,8 @@
 import Image from "next/image"
 
 
-function BannerImage({ slider }) {
+function BannerImage(props: any) {
+    const { slider } = props || {};
     return (
         <Image
             height={1000}

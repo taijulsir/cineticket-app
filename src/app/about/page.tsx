@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Film, Clock, Star, Users, Database, CreditCard, Globe, Search } from 'lucide-react';
 
 export const metadata = {
@@ -20,7 +21,9 @@ export default function AboutPage() {
       {/* HERO / INTRO */}
       <section className="relative overflow-hidden">
         {/* cinematic background image */}
-        <img src="/Assets/about/about-img.png" alt="cinema" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none">
+          <Image src="/Assets/about/about-img.png" alt="cinema" fill className="object-cover opacity-20" />
+        </div>
         <div className="bg-gradient-to-br from-[#08080a]/70 via-[#0b0b0f] to-[#0b0b0f]">
           <div className="pt-32 pb-20 relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -42,7 +45,7 @@ export default function AboutPage() {
 
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden bg-gradient-to-tr from-black/40 to-white/2 border border-white/5 p-6">
-                  <img src="/Assets/about/about-img.png" alt="cinema" className="w-full h-72 md:h-80 object-cover rounded-2xl" />
+                  <Image src="/Assets/about/about-img.png" alt="cinema" width={1200} height={480} className="w-full h-72 md:h-80 object-cover rounded-2xl" />
                   <div className="-mt-16 p-6 bg-gradient-to-t from-black/40 to-transparent rounded-xl">
                     <p className="text-sm text-gray-300">Cinematic experience sample</p>
                     <div className="mt-4 flex gap-4">
@@ -72,7 +75,7 @@ export default function AboutPage() {
 
           <div className="flex items-center justify-center">
             <div className="w-full rounded-2xl bg-gradient-to-br from-white/3 to-transparent border border-white/5 p-4 shadow-soft overflow-hidden">
-              <img src="/Assets/about/about-modal.png" alt="Our story" className="w-full h-64 object-cover rounded-lg" />
+              <Image src="/Assets/about/about-modal.png" alt="Our story" width={800} height={360} className="w-full h-64 object-cover rounded-lg" />
             </div>
           </div>
         </div>

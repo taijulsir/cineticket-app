@@ -13,10 +13,10 @@ import { useAuth } from "@/context/AuthContext/AuthContext";
 import useAxiosInstance from "@/Utilities/Hooks/useAxiosInstance";
 import { IMAGE_URL } from "@/Utilities/APIs/APIs";
 
-function MovieVoteCard({ voteToBring }) {
-  const { triggerFetch, customerUpvote } = useContext(AppContext);
-  const { customer, setShowLoginModal, setShowModal } = useAuth();
-  const [upvoted, setUpvoted] = useState([]);
+function MovieVoteCard({ voteToBring }: { voteToBring: any[] }) {
+  const { triggerFetch, customerUpvote } = useContext(AppContext)!;
+  const { customer, setShowLoginModal, setShowModal } = useAuth()!;
+  const [upvoted, setUpvoted] = useState<string[]>([]);
   const [slidesPerView, setSlidesPerView] = useState(2);
   const [spaceBetween, setSpaceBetween] = useState(30);
   const axiosInstance = useAxiosInstance();
@@ -50,7 +50,7 @@ function MovieVoteCard({ voteToBring }) {
     }
   }, [customer, customerUpvote]);
 
-  async function handleUpvote(id) {
+  async function handleUpvote(id: string) {
     if (!customer) {
       setShowModal(true);
       setShowLoginModal(true);
@@ -66,7 +66,7 @@ function MovieVoteCard({ voteToBring }) {
     }
   }
 
-  async function deleteVote(id) {
+  async function deleteVote(id: string) {
     if (!customer) {
       setShowModal(true);
       setShowLoginModal(true);
@@ -125,7 +125,6 @@ function MovieVoteCard({ voteToBring }) {
 
                 <button
                   disabled={upvoted.includes(movie._id)}
-                  variant={upvoted.includes(movie._id) ? "disabled" : "upvote"}
                   onClick={() => handleUpvote(movie._id)}
                   className={
                     upvoted.includes(movie._id)

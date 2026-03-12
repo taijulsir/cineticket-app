@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from 'next/image';
 import Link from "next/link";
 import { Star, Play, Ticket, Clock, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,10 +24,11 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
                 className="group relative flex flex-col h-full bg-[#1a1a1e] rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-500 hover:border-primary/40 shadow-soft w-full mx-auto"
             >
                 <div className="relative aspect-[2/3] shrink-0 overflow-hidden">
-                    <img
+                    <Image
                         src={movie.posterUrl}
                         alt={movie.title}
-                        className="w-full h-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-110"
+                        fill
+                        className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-110"
                     />
 
                     {/* Floating Rating Badge */}

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-function NavbarWrapper({ children }) {
+function NavbarWrapper({ children }: { children?: any }) {
   const pathName = usePathname()
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {

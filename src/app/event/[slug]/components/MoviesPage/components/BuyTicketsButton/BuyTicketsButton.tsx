@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 
-function BuyTicketsButton({setShowModal}) {
+function BuyTicketsButton({ setShowModal }: { setShowModal: (v: boolean) => void }) {
 
     return (
         <Button

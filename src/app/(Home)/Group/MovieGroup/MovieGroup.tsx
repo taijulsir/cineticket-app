@@ -5,8 +5,8 @@ import AppContext from "@/context/AppContext";
 import { useContext, useEffect, useState } from "react";
 import Ads from "../Ads/Ads";
 
-function MovieGroup({ nowSelling, upcoming }) {
-  const { isLoading } = useContext(AppContext);
+function MovieGroup({ nowSelling, upcoming }: { nowSelling?: any[]; upcoming?: any[] }) {
+  const { isLoading } = useContext(AppContext)!;
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +18,7 @@ function MovieGroup({ nowSelling, upcoming }) {
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
-      window.addEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   });
   return (

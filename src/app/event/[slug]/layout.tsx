@@ -1,6 +1,6 @@
 import { mockMovies } from "@/Utilities/mockData/mockMovies";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: any }) {
   try {
     const base = `${(process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:5001/").replace(/\/$/, "")}/api`;
     const response = await fetch(`${base}/events/${params.slug}`, { cache: "no-store" });
@@ -20,6 +20,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: any }) {
   return <>{children}</>;
 }

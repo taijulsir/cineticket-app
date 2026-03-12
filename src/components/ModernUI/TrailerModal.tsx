@@ -55,7 +55,7 @@ const TrailerModal: React.FC<TrailerModalProps> = ({ isOpen, onClose, trailerUrl
                         <div className="absolute top-6 left-6 md:left-8 right-6 md:right-8 flex items-center justify-between z-10 pointer-events-none">
                             <div className="bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-2xl border border-white/10 max-w-[70%]">
                                 <h3 className="text-white font-black tracking-tight text-sm md:text-lg truncate">
-                                    {movieTitle} <span className="text-primary ml-2 hidden sm:inline">// Official Trailer</span>
+                                    {movieTitle} <span className="text-primary ml-2 hidden sm:inline">{`// Official Trailer`}</span>
                                 </h3>
                             </div>
                             <button

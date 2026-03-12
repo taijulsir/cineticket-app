@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import useAxiosPublicInstance from '@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance';
 
 
-function useFetchAndSetSingleEventData (slug) {
-    const [event, setEvent] = useState("");
-    const [ads, setAds] = useState([]);
-    const [statistics,setStatistics] = useState("")
+function useFetchAndSetSingleEventData (slug: any) {
+    const [event, setEvent] = useState<any>(null);
+    const [ads, setAds] = useState<any[]>([]);
+    const [statistics,setStatistics] = useState<any>({})
 
     const axiosPublicInstance = useAxiosPublicInstance();
 
@@ -18,8 +18,8 @@ function useFetchAndSetSingleEventData (slug) {
                 ]);
                 const eventData = eventRes.data?.data ?? eventRes.data;
                 setEvent(eventData);
-                const theaters = new Set((eventData?.shows ?? []).map((show) => show.theaterId));
-                const halls = new Set((eventData?.shows ?? []).map((show) => show.hallId));
+                const theaters = new Set((eventData?.shows ?? []).map((show: any) => show.theaterId));
+                const halls = new Set((eventData?.shows ?? []).map((show: any) => show.hallId));
                 setStatistics({ totalHalls: halls.size, totalCities: 0, totalTheaters: theaters.size })
                 setAds(adsRes.data?.data ?? adsRes.data);
             } catch (error) {

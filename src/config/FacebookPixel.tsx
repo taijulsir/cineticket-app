@@ -16,6 +16,7 @@ const FacebookPixel = () => {
     return (
         <>
             <Script
+                id="facebook-pixel"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: `
@@ -33,9 +34,12 @@ const FacebookPixel = () => {
                 }}
             />
             <noscript>
+                {/* image in noscript must be a raw img; disable the eslint rule for this line */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     height="1"
                     width="1"
+                    alt=""
                     style={{ display: 'none' }}
                     src={`https://www.facebook.com/tr?id=${fbPixel.FB_PIXEL_ID}&ev=PageView&noscript=1`}
                 />

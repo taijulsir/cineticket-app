@@ -4,7 +4,7 @@ import React from 'react';
 import { FaChair, FaCrown, FaChild, FaWheelchair, FaBan } from 'react-icons/fa';
 import { PiStairsThin } from 'react-icons/pi';
 
-function Icon({ status, size }) {
+function Icon({ status, size }: { status?: string; size?: number }) {
     switch (status) {
         case 'recliner':
         case 'standard':

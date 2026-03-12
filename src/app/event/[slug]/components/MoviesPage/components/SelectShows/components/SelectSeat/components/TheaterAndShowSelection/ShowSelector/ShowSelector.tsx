@@ -1,6 +1,6 @@
-function ShowSelector({ shows, selectedShows, setSelectedShows }) {
+function ShowSelector({ shows, selectedShows, setSelectedShows }: { shows?: any[]; selectedShows?: string; setSelectedShows?: (v: string) => void }) {
 
-  function convertTo12Hour(time) {
+  function convertTo12Hour(time: string) {
     let [hour, minute] = time.split(":").map(Number);
     let period = hour >= 12 ? "PM" : "AM";
     hour = hour % 12 || 12;
@@ -11,7 +11,7 @@ function ShowSelector({ shows, selectedShows, setSelectedShows }) {
       <div>
         <select
           value={selectedShows}
-          onChange={(e) => setSelectedShows(e.target.value)}
+          onChange={(e) => setSelectedShows?.(e.target.value)}
           style={{
             borderRadius: "5px",
             color: "white",

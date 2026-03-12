@@ -5,6 +5,8 @@ import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxio
 import Heading from "@/components/Heading/Heading";
 import WatchTrailer from "@/components/WatchTrailer/WatchTrailer";
 import Card from "../../components/SliderEventCard/Card/Card";
+// Fast-pass: untyped alias to avoid strict prop type mismatches
+const CardAny: any = Card;
 import Ads from "../(Home)/Group/Ads/Ads";
 
 // export const metadata = {
@@ -18,7 +20,7 @@ function Upcoming() {
   const handleCloseWatchTrailer = () => setShowWatchTrailerModal(false);
   const [youtubeId, setYoutubeId] = useState("");
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<any[]>([]);
 
   const status = "upcoming";
   const axiosPublicInstance = useAxiosPublicInstance();
@@ -46,7 +48,7 @@ function Upcoming() {
                 key={event._id}
                 className="w-full bg-transparent rounded-lg relative group"
               >
-                <Card
+                <CardAny
                   event={event}
                   setShowWatchTrailerModal={handleOpenWatchTrailer}
                   setYoutubeId={setYoutubeId}

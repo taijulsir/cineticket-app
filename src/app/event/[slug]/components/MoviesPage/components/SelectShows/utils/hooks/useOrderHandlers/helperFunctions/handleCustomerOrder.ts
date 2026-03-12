@@ -15,10 +15,10 @@ export const handleCustomerOrder = async ({
     setError,
     axiosInstance,
     triggerFetch,
-    eventCurrency 
-}) => {
+    eventCurrency
+}: any) => {
     try {
-        const orderData = {
+        const orderData: any = {
             event: eventId,
             name,
             mobileNumber,
@@ -31,26 +31,26 @@ export const handleCustomerOrder = async ({
         };
 
         if (promoCode) {
-            orderData.promoCode = promoCodeId
+            orderData.promoCode = promoCodeId;
         }
 
-        const res = await axiosInstance.post('/payment-intent', orderData);
-        if (res.data.error) {
-            setError(res.data.message)
-            setSelectedSeats([])
-            triggerFetch()
+        const res: any = await axiosInstance.post('/payment-intent', orderData);
+        if ((res.data as any)?.error) {
+            setError?.((res.data as any)?.message);
+            setSelectedSeats?.([]);
+            triggerFetch?.();
             return;
         }
-        const sessionID = res.data.id;
-        const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY);
+        const sessionID = (res.data as any)?.id;
+        const stripe: any = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY as string);
 
-        const result = await stripe.redirectToCheckout({ sessionId: sessionID });
+        const result: any = await stripe.redirectToCheckout({ sessionId: sessionID });
 
-        if (result.error) {
-            setError(result.error.message);
+        if ((result as any)?.error) {
+            setError?.(((result as any).error as any)?.message);
         }
     } catch (error) {
         console.error(error);
-        setError(error.message);
+        setError?.(((error as any)?.message) || String(error));
     }
 };

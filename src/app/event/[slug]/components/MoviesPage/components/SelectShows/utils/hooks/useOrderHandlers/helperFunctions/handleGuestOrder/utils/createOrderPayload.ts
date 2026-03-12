@@ -11,8 +11,8 @@ export function createOrderPayload({
     promoCodeId,
     eventCurrency
 
-}) {
-    const payload = {
+}: any) {
+    const payload: any = {
         eventId,
         showId: selectedShows,
         name,
@@ -20,7 +20,7 @@ export function createOrderPayload({
         email,
         total,
         discount,
-        ticketItems: (selectedSeats ?? []).map((seat) => ({
+        ticketItems: (selectedSeats ?? []).map((seat: any) => ({
             seatId: seat?._id ?? seat?.id,
             price: seat?.price ?? 600,
         })),

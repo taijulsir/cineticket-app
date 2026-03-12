@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { calculateTotal } from '../helperFunctions/calculateTotal';
 import AppContext from '@/context/AppContext';
 
-function useOrderSteps(shows, selectedShows, setSelectedShows, selectedTheater, setError) {
+function useOrderSteps(shows: any, selectedShows: any, setSelectedShows: any, selectedTheater: any, setError: any) {
 
-    const { setTotal, selectedSeats, setSelectedSeats } = useContext(AppContext)
+    const { setTotal, selectedSeats, setSelectedSeats } = useContext(AppContext) as any;
     const steps = ['Customer Info', 'Shipping Info'];
     const [currentStep, setCurrentStep] = useState(1);
     const [name, setName] = useState('');

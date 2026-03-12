@@ -23,9 +23,10 @@ import {
 } from '../../app/(Home)/Banner/EmblaCarouselArrowButtons'
 import Card from "./Card/Card";
 
-function SliderEventCard({ eventTitle, events }) {
+function SliderEventCard(props: any) {
+  const { eventTitle, events } = props || {};
 
-  const { isLoading } = useContext(AppContext)
+  const { isLoading } = (useContext(AppContext) as any) || {}
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [showWatchTrailerModal, setShowWatchTrailerModal] = useState(false);
   const [youtubeId, setYoutubeId] = useState("")
@@ -61,7 +62,7 @@ function SliderEventCard({ eventTitle, events }) {
   } = usePrevNextButtons(emblaApi)
 
   const onButtonAutoplayClick = useCallback(
-    (callback) => {
+    (callback: any) => {
       const autoplay = emblaApi?.plugins()?.autoplay
       if (!autoplay) return
 
@@ -84,7 +85,7 @@ function SliderEventCard({ eventTitle, events }) {
             <div className="embla">
               <div className="embla__viewport" ref={emblaRef}>
                 <div className="embla__container">
-                  {events && events.length > 0 && events?.map((event) => (
+                  {events && events.length > 0 && events?.map((event: any) => (
                     <div className={`embla__slide_event w-full bg-transparent rounded-lg relative group`}
                       key={event._id}
                     >

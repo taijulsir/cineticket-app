@@ -107,8 +107,8 @@ function TermDescription() {
 
       <p >By buying tickets through our website, app, or at the cinema, you agree to the following:</p>
       <ul>
-        <li>You'll accept the assigned seats for your tickets.</li>
-        <li>We don't guarantee any specific seat, row, or section. Our staff may change your seat assignment if needed.</li>
+        <li>You&apos;ll accept the assigned seats for your tickets.</li>
+        <li>We don&apos;t guarantee any specific seat, row, or section. Our staff may change your seat assignment if needed.</li>
         <li>We have the right to refuse or cancel ticket sales.</li>
 
       </ul>
@@ -141,7 +141,7 @@ function TermDescription() {
         <li>You can be refused entry or removed if you break these rules, are disruptive, intoxicated, under the influence of drugs, or dressed inappropriately.</li>
         <li>Late arrivals may not be admitted until a suitable break.</li>
         <li>Cameras and recording devices may be prohibited.</li>
-        <li>Recording films is illegal. We'll report any suspected offenders. Filming in other areas is generally not allowed, unless otherwise stated.</li>
+        <li>Recording films is illegal. We&apos;ll report any suspected offenders. Filming in other areas is generally not allowed, unless otherwise stated.</li>
         <li>You may be searched before entering.</li>
         <li>By attending, you agree to be filmed or recorded, and allow the organizer and BongOz Films to use your image and voice for any purpose, without compensation.</li>
         <li>You must comply with all government regulations for attending events.</li>

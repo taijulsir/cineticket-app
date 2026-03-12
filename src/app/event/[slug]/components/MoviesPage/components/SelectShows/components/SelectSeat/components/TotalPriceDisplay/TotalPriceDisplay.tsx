@@ -1,9 +1,9 @@
 import AppContext from "@/context/AppContext";
 import { useContext } from "react";
 
-export function TotalPriceDisplay({ error, currencySymbol  }) {
+export function TotalPriceDisplay({ error, currencySymbol }: { error?: string; currencySymbol?: string }) {
 
-    const { total } = useContext(AppContext);
+    const { total } = useContext(AppContext) as any;
     return (
         <div className=" flex flex-wrap justify-between">
             {

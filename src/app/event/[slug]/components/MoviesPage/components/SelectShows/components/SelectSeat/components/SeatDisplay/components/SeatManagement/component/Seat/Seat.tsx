@@ -7,12 +7,24 @@ import Icon from './components/Icon/Icon';
 import SeatWrapper from './components/SeatWrapper/SeatWrapper';
 import './SeatDesign.css';
 
-function Seat({ seat, handleSeatClickWrapper, getTooltipContent, isSelected }) {
+function Seat({
+	seat,
+	handleSeatClickWrapper,
+	getTooltipContent,
+	isSelected,
+	orientation,
+}: {
+	seat?: any;
+	handleSeatClickWrapper?: (seat: any) => void;
+	getTooltipContent?: (seat: any) => React.ReactNode;
+	isSelected?: boolean;
+	orientation?: string;
+}) {
 
-	const singleDivRef = useRef();
-	const dimensions = useElementDimensions(singleDivRef);
-	const size = dimensions.width && dimensions.height ? (dimensions.width > dimensions.height ? dimensions.height : dimensions.width) - 2 : 14;
-	const tooltipContent = seat ? getTooltipContent(seat) : '';
+	const singleDivRef = useRef<HTMLDivElement | null>(null);
+	const dimensions: any = useElementDimensions(singleDivRef);
+	const size = dimensions?.width && dimensions?.height ? (dimensions.width > dimensions.height ? dimensions.height : dimensions.width) - 2 : 14;
+	const tooltipContent = seat ? getTooltipContent?.(seat) : '';
 
 	
 	return (
@@ -24,8 +36,8 @@ function Seat({ seat, handleSeatClickWrapper, getTooltipContent, isSelected }) {
 				className={`square-button 
 					${isSelected ? 'selected' : ''} 
 					${seat?.status === 'unavailable' || seat?.status === 'stair' || (seat?.isBooked || seat?.isTemporaryBooked) ? 'booked' : ''}`}
-				onClick={() => handleSeatClickWrapper(seat)}
-				data-tooltip={seat ? getTooltipContent(seat) : ''}
+				onClick={() => handleSeatClickWrapper?.(seat)}
+				data-tooltip={seat ? getTooltipContent?.(seat) : ''}
 				style={{
 					display: 'grid',
 					placeItems: 'center',

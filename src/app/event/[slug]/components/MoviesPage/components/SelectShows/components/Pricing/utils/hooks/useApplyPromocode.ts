@@ -3,13 +3,33 @@ import { useContext } from "react";
 import AppContext from '@/context/AppContext';
 import useAxiosPublicInstance from "@/Utilities/Hooks/AxiosInstanceHooks/useAxiosPublicInstance";
 
-function useApplyPromocode(promoCode, setPromoCode, error, setError, triggerFetch, setName, setEmail, setMobileNumber) {
+function useApplyPromocode(
+  promoCode?: string,
+  setPromoCode?: (v: string) => void,
+  error?: any,
+  setError?: (v: any) => void,
+  triggerFetch?: any,
+  setName?: (v: string) => void,
+  setEmail?: (v: string) => void,
+  setMobileNumber?: (v: string) => void
+) {
 
-    const axiosPublicInstance = useAxiosPublicInstance();
+  const axiosPublicInstance = useAxiosPublicInstance();
 
-    const { setDiscount, afterDiscountTotal, discount, promoCodeId, setPromoCodeId, setAfterDiscountTotal, isPromo, setIsPromo, selectedSeats, setSelectedSeats } = useContext(AppContext)
+  const {
+    setDiscount,
+    afterDiscountTotal,
+    discount,
+    promoCodeId,
+    setPromoCodeId,
+    setAfterDiscountTotal,
+    isPromo,
+    setIsPromo,
+    selectedSeats,
+    setSelectedSeats,
+  } = useContext(AppContext) as any;
 
-    const handleApplyPromoCode = async (total) => {
+  const handleApplyPromoCode = async (total: number) => {
         try {
             const { data } = await axiosPublicInstance.post("/promo-codes/apply", {
                 promoCode,
@@ -24,31 +44,27 @@ function useApplyPromocode(promoCode, setPromoCode, error, setError, triggerFetc
             setPromoCodeId(payload?.promoCodeId || '');
 
             if (data?.success === false || payload?.error) {
-                setError(data?.message || payload?.message);
-                setSelectedSeats([])
-                setName("")
-                setEmail("")
-                setMobileNumber("")
-                triggerFetch()
+                setError?.(data?.message || payload?.message);
+                setSelectedSeats([]);
+                setName?.("");
+                setEmail?.("");
+                setMobileNumber?.("");
+                triggerFetch?.();
             } else {
-                setError("")
+                setError?.("");
             }
-        } catch (error) {
-            if (
-                error.response &&
-                error.response.data &&
-                error.response.data.message
-            ) {
-                setError(error.response.data.message);
+        } catch (err: any) {
+            if (err && err.response && err.response.data && err.response.data.message) {
+                setError?.(err.response.data.message);
             } else {
-                setError("An error occurred while applying the promo code. Please try again.");
+                setError?.("An error occurred while applying the promo code. Please try again.");
             }
         }
     };
 
     const resetPromoCode = () => {
-        setPromoCode('');
-        setPromoCodeId('');
+        setPromoCode?.("");
+        setPromoCodeId("");
         setDiscount(0);
         setAfterDiscountTotal(0);
         setIsPromo(false);

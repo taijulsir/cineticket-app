@@ -1,12 +1,12 @@
-export function handleResponse(res, setSelectedSeats, router, eventSlug,triggerFetch,setError) {
-    if (res.data.error) {
-        setError(res.data.message)
-        setSelectedSeats([])
-        triggerFetch()
+export function handleResponse(res: any, setSelectedSeats: any, router: any, eventSlug: any, triggerFetch: any, setError: any) {
+    if ((res.data as any)?.error) {
+        setError?.(((res.data as any)?.message));
+        setSelectedSeats?.([]);
+        triggerFetch?.();
         return;
     }
-    if (res.status === 201) {
-        setSelectedSeats([]);
-        router.push(`/payment-success/${eventSlug}`);
+    if ((res as any)?.status === 201) {
+        setSelectedSeats?.([]);
+        router?.push(`/payment-success/${eventSlug}`);
     }
 };

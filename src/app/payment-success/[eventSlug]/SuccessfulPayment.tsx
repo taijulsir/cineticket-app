@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 
 import { FaCheckCircle } from "react-icons/fa";
 
-function SuccessfulPayment({ params }) {
+function SuccessfulPayment({ params }: { params: any }) {
     const [event, setEvent] = useState<any>(null);
     const [status, setStatus] = useState<"pending" | "success" | "failed">("pending");
     const searchParams = useSearchParams();

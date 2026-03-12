@@ -1,5 +1,5 @@
-export const handleOrderError = (message, setError, setSelectedSeats, triggerFetch) => {
-    setError(message);
-    setSelectedSeats([]);
-    triggerFetch();
+export const handleOrderError = (message: any, setError: any, setSelectedSeats: any, triggerFetch: any) => {
+    setError?.(message);
+    setSelectedSeats?.([]);
+    triggerFetch?.();
 };

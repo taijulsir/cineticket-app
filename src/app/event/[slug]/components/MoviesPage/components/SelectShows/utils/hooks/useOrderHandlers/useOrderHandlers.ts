@@ -22,7 +22,7 @@ function useOrderHandlers({
     setError,
     triggerFetch,
     eventCurrency
-    }) {
+    }: any) {
 
     const {
         total,
@@ -30,7 +30,7 @@ function useOrderHandlers({
         afterDiscountTotal,
         selectedSeats,
         setSelectedSeats,
-        promoCodeId } = useContext(AppContext)
+        promoCodeId } = useContext(AppContext) as any;
 
     const router = useRouter();
     const axiosPublicInstance = useAxiosPublicInstance();

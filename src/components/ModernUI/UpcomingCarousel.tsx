@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Bell, Calendar, ChevronRight } from 'lucide-react';
@@ -56,11 +57,12 @@ const UpcomingCarousel: React.FC<UpcomingCarouselProps> = ({ movies }) => {
                             whileHover={{ y: -10 }}
                             className="group relative bg-[#1a1a1e] rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 hover:border-primary/20"
                         >
-                            <div className="aspect-[2/3] relative overflow-hidden">
-                                <img
+                                <div className="aspect-[2/3] relative overflow-hidden">
+                                <Image
                                     src={movie.posterUrl}
                                     alt={movie.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1e] via-transparent to-transparent opacity-80" />
 

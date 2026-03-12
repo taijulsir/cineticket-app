@@ -1,4 +1,4 @@
-function Pill({ text, selected, handleClick }) {
+function Pill({ text, selected, handleClick }: { text?: any; selected?: boolean; handleClick?: any }) {
 	return (
 		<div className="min-w-[140px]   border-[0px] border-white rounded-lg flex justify-start items-center overflow-x-auto gap-5">
 			<label

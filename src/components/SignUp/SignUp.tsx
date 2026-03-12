@@ -18,11 +18,12 @@ const formSchema = z.object({
   password: z.string().min(2).max(50),
 });
 
-function SignUp({ showModal, setShowModal, toggleSignUp, setShowSignUp }) {
+function SignUp(props: any) {
+  const { showModal, setShowModal, toggleSignUp, setShowSignUp } = props || {};
   const [closeModal, setCloseModal] = useState(false);
   const [email, setEmail] = useState("");
 
-  const { register } = useAuth();
+  const { register } = (useAuth() as any) || {};
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -30,7 +31,7 @@ function SignUp({ showModal, setShowModal, toggleSignUp, setShowSignUp }) {
       name: "",
     },
   });
-  async function submitFunc(values) {
+  async function submitFunc(values: any) {
     const customerData = values;
     const result = await register(customerData);
     if (result) {

@@ -1,6 +1,6 @@
-export function handleUpdateSeats(seats, showsPrice) {
-    return seats?.map((seat) => {
-        const priceObj = showsPrice?.find((price) => price.status === seat.status);
+export function handleUpdateSeats(seats: any[] | undefined, showsPrice: any): any[] | undefined {
+    return seats?.map((seat: any) => {
+        const priceObj = showsPrice?.find((price: any) => price.status === seat.status);
         const price = seat.status === 'stair' || seat.status === 'unavailable'
             ? 0
             : priceObj
@@ -8,4 +8,4 @@ export function handleUpdateSeats(seats, showsPrice) {
                 : 0;
         return { ...seat, price };
     });
-};
+}

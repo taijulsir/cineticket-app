@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from 'next/image';
 import HeroSection from "@/components/ModernUI/HeroSection";
 import SearchBar from "@/components/ModernUI/SearchBar";
 import MovieSlider from "@/components/ModernUI/MovieSlider";
@@ -125,9 +126,11 @@ export default function HomePage() {
               </button>
             </div>
             <div className="hidden md:block">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop"
                 alt="Promo"
+                width={800}
+                height={500}
                 className="rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
               />
             </div>

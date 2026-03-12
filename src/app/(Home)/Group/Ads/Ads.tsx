@@ -11,8 +11,8 @@ const Ads = ({
   topMargin = "-top-[65px]",
   paddingTop = "pt-0",
   paddingTopMd = "md:pt-52",
-}) => {
-  const [ads, setAds] = useState([]);
+}: { topMargin?: string; paddingTop?: string; paddingTopMd?: string }) => {
+  const [ads, setAds] = useState<any[]>([]);
   const axiosPublicInstance = useAxiosPublicInstance();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ playOnInit: true, delay:3000 }),

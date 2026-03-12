@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FilterSidebar from "./FilterSidebar";
 
-const MobileFilterDrawer = ({ isOpen, onClose, filters, setFilter, onReset, resultCount }) => {
+const MobileFilterDrawer = ({ isOpen, onClose, filters, setFilter, onReset, resultCount }: { isOpen?: any; onClose?: any; filters?: any; setFilter?: any; onReset?: any; resultCount?: any }) => {
     return (
         <AnimatePresence>
             {isOpen && (

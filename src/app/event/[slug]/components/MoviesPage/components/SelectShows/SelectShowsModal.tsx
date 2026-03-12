@@ -27,10 +27,10 @@ function SelectShowsModal({
 	toggleFetch,
 	showModal,
 	eventCurrency = "AUD"
-}) {
+}: { eventSlug?: string; shows?: any[]; selectedShows?: any; setSelectedShows?: any; setError?: any; error?: string; eventId?: any; theaters?: any[]; selectedTheater?: string; setSelectedTheater?: any; triggerFetch?: any; toggleFetch?: any; showModal?: any; eventCurrency?: string }) {
 
-	const { selectedSeats } = useContext(AppContext);
-	const currencySymbol = CURRENCY_SYMBOLS[eventCurrency]
+	const { selectedSeats } = useContext(AppContext) as any;
+	const currencySymbol = (CURRENCY_SYMBOLS as any)[eventCurrency]
 
 	const {
 		steps, currentStep, setCurrentStep,

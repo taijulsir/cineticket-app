@@ -19,13 +19,15 @@ function SelectSeat({
 	toggleFetch,
 	error,
 	showModal,
-	currencySymbol
-}) {
+	currencySymbol,
+	promoCode,
+	setPromoCode
+}: { selectedShows?: string; handleCustomerOrder?: any; handleGuestOrder?: any; setSelectedShows?: (v: string) => void; shows?: any[]; theaters?: any[]; selectedTheater?: string; setSelectedTheater?: (v: string) => void; toggleFetch?: any; error?: string; showModal?: any; currencySymbol?: string; promoCode?: string; setPromoCode?: (v: string) => void }) {
 
 	const { numberOfRows, numberOfColumns, seats, setSeats, showsPrice } = useFetchShowSeatsAndPrice(selectedShows, toggleFetch);
 
 	useEffect(() => {
-		setSeats([])
+		setSeats?.([])
 	}, [showModal])
 
 	return (

@@ -1,5 +1,5 @@
-export function handleSeatClick (seat,setSelectedSeats)  {
-    setSelectedSeats((prevSelectedSeats) => {
+export function handleSeatClick(seat: any, setSelectedSeats: any): void {
+    setSelectedSeats((prevSelectedSeats: any[]) => {
         const isSelected = prevSelectedSeats.some(
             (selectedSeat) => selectedSeat.seatName === seat.seatName
         );
@@ -11,4 +11,4 @@ export function handleSeatClick (seat,setSelectedSeats)  {
             return [...prevSelectedSeats, seat];
         }
     });
-};
+}

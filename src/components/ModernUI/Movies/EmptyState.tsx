@@ -3,7 +3,7 @@ import React from "react";
 import { Search, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 
-const EmptyState = ({ onReset }) => {
+const EmptyState = ({ onReset }: { onReset?: any }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

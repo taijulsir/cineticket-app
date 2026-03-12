@@ -20,8 +20,9 @@ const formSchema = z.object({
   password: z.string().min(2).max(50),
 });
 
-function SignIn({ setShowModal, toggleSignUp }) {
-  const { customer, login } = useAuth()
+function SignIn(props: any) {
+  const { setShowModal, toggleSignUp } = props || {};
+  const { customer, login } = (useAuth() as any) || {};
   const [error, setError] = useState(null);
   const [showForgetPassword, setShowForgetPassword] = useState(false);
   const form = useForm({
@@ -30,7 +31,7 @@ function SignIn({ setShowModal, toggleSignUp }) {
       email: "",
     },
   });
-  async function submitFunc(values) {
+  async function submitFunc(values: any) {
     const customerData = values;
     const result = await login(customerData);
     if (result.email) {

@@ -7,20 +7,20 @@ import { handleUpdateSeats } from '../helperFunctions/handleUpdateSeats';
 import { handleGetTooltipContent } from '../helperFunctions/handleGetTooltipContent';
 import { handleSeatClick } from '../helperFunctions/handleSeatClick';
 
-const useSeatManagement = (seats, showsPrice, currencySymbol) => {
-    const { setSelectedSeats } = useContext(AppContext);
+const useSeatManagement = (seats: any[] | undefined, showsPrice: any, currencySymbol?: string) => {
+    const { setSelectedSeats } = useContext(AppContext) as any;
 
     const updatedSeats = useMemo(() => {
         return handleUpdateSeats(seats, showsPrice);
     }, [seats, showsPrice]);
 
-    const handleSeatClickWrapper = (seat) => {
-        handleSeatClick(seat, setSelectedSeats)
-    }
+    const handleSeatClickWrapper = (seat: any) => {
+        handleSeatClick(seat, setSelectedSeats);
+    };
 
-    const getTooltipContent = (seat) => {
-        return handleGetTooltipContent(seat,currencySymbol)
-    }
+    const getTooltipContent = (seat: any) => {
+        return handleGetTooltipContent(seat, currencySymbol);
+    };
     return {
         updatedSeats,
         handleSeatClickWrapper,

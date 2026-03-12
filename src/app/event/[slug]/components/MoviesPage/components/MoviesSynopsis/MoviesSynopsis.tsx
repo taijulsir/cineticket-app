@@ -1,9 +1,9 @@
 import TrailerVideo from '@/components/TrailerVideo/TrailerVideo';
 import React from 'react'
 
-function MoviesSynopsis({ event, crews }) {
-    const producer = crews?.filter((crew) => crew.type === "Producer");
-    const localDistributors = crews?.filter((crew) => crew.type === "localDistributor");
+function MoviesSynopsis({ event, crews }: { event?: any; crews?: any[] }) {
+    const producer = crews?.filter((crew: any) => crew.type === "Producer");
+    const localDistributors = crews?.filter((crew: any) => crew.type === "localDistributor");
 
     return (
         <div id="synopsis" className='mt-5'>

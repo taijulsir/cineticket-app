@@ -16,16 +16,37 @@ function Pricing({
   setError,
   error,
   triggerFetch,
-  setName, setEmail, setMobileNumber
+  setName,
+  setEmail,
+  setMobileNumber,
+}: {
+  promoCode?: string;
+  currencySymbol?: string;
+  setPromoCode?: (v: string) => void;
+  setError?: (v: any) => void;
+  error?: any;
+  triggerFetch?: any;
+  setName?: (v: string) => void;
+  setEmail?: (v: string) => void;
+  setMobileNumber?: (v: string) => void;
 }) {
 
-  const { total } = useContext(AppContext)
+  const { total } = useContext(AppContext) as any;
 
-  const { handleApplyPromoCode, resetPromoCode } = useApplyPromocode(promoCode, setPromoCode, error, setError, triggerFetch, setName, setEmail, setMobileNumber)
+  const { handleApplyPromoCode, resetPromoCode } = useApplyPromocode(
+    promoCode,
+    setPromoCode,
+    error,
+    setError,
+    triggerFetch,
+    setName,
+    setEmail,
+    setMobileNumber
+  );
 
   useEffect(() => {
-    resetPromoCode()
-  }, [total])
+    resetPromoCode();
+  }, [total]);
 
   return (
 

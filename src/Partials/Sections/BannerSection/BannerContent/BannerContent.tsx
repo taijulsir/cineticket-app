@@ -1,8 +1,9 @@
 import React from 'react'
 
-function BannerContent({ slider }) {
+function BannerContent(props: any) {
+    const { slider } = props || {};
     return (
-        <div >
+        <div>
             <h1 style={{
                 // webkitTextStrokeWidth: "1px",
                 // webkitTextStrokeColor: "black"

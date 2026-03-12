@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import SelectLocation from '../SelectLocation';
 
-function SelectCity({ headerText, cities, selectedCity, setSelectedCity, api }) {
+function SelectCity({ headerText, cities, selectedCity, setSelectedCity, api }: { headerText?: any, cities?: any[], selectedCity?: any, setSelectedCity?: any, api?: any }) {
 
     useEffect(() => {
-        setSelectedCity(cities[0]);
+        if (cities && cities.length > 0) {
+            setSelectedCity?.(cities[0]);
+        }
     }, [cities]);
 
     return (

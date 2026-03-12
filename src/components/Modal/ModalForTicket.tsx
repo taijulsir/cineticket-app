@@ -3,7 +3,7 @@ import "./ModalForTicket.css";
 function ModalForTicket({
     children,
     setShowModalContent,
-}) {
+}: { children?: any; setShowModalContent?: any }) {
     return (
         <div className={`modal_for_ticket`}>
             <div

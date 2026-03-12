@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, RefObject } from 'react';
 
-function useElementDimensions(ref) {
-    const [dimensions, setDimensions] = useState({});
+function useElementDimensions(ref: RefObject<HTMLElement | null>) {
+    const [dimensions, setDimensions] = useState<any>({});
 
     useEffect(() => {
         const updateDimensions = () => {
@@ -25,7 +25,7 @@ function useElementDimensions(ref) {
         return () => {
             window.removeEventListener('resize', updateDimensions);
         };
-    }, [ref]);
+        }, [ref]);
 
     return dimensions;
 }

@@ -20,7 +20,7 @@ const years = [
     "2020",
 ];
 
-const FilterSidebar = ({ filters, setFilter, onReset, className = "" }) => {
+const FilterSidebar = ({ filters, setFilter, onReset, className = "" }: { filters?: any; setFilter?: any; onReset?: any; className?: string }) => {
     const {
         selectedGenres = [],
         selectedLanguages = [],
@@ -29,12 +29,12 @@ const FilterSidebar = ({ filters, setFilter, onReset, className = "" }) => {
         selectedYears = [],
     } = filters;
 
-    const toggleArrayFilter = (key, value) => {
-        const current = filters[key] || [];
+    const toggleArrayFilter = (key: any, value: any) => {
+        const current = filters?.[key] || [];
         const next = current.includes(value)
-            ? current.filter((v) => v !== value)
+            ? current.filter((v: any) => v !== value)
             : [...current, value];
-        setFilter(key, next);
+        setFilter?.(key, next);
     };
 
     return (
@@ -141,7 +141,7 @@ const FilterSidebar = ({ filters, setFilter, onReset, className = "" }) => {
 
 /* ── Tiny helpers ───────────────────────────────────── */
 
-const FilterSection = ({ icon, label, children }) => (
+const FilterSection = ({ icon, label, children }: { icon?: any; label?: any; children?: any }) => (
     <div className="space-y-3">
         <div className="flex items-center gap-2 text-gray-500 font-bold uppercase tracking-[0.15em] text-[10px]">
             {icon} {label}
@@ -150,7 +150,7 @@ const FilterSection = ({ icon, label, children }) => (
     </div>
 );
 
-const CheckboxPill = ({ label, checked, onChange }) => (
+const CheckboxPill = ({ label, checked, onChange }: { label?: any; checked?: any; onChange?: any }) => (
     <button
         onClick={onChange}
         className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all border ${checked
@@ -162,7 +162,7 @@ const CheckboxPill = ({ label, checked, onChange }) => (
     </button>
 );
 
-const CheckboxRow = ({ label, checked, onChange }) => (
+const CheckboxRow = ({ label, checked, onChange }: { label?: any; checked?: any; onChange?: any }) => (
     <label className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg cursor-pointer hover:bg-white/5 transition-colors group">
         <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${checked ? "bg-primary border-primary" : "border-white/20 group-hover:border-white/40"}`}>
             {checked && (
@@ -177,7 +177,7 @@ const CheckboxRow = ({ label, checked, onChange }) => (
     </label>
 );
 
-const ToggleButton = ({ label, active, onClick }) => (
+const ToggleButton = ({ label, active, onClick }: { label?: any; active?: any; onClick?: any }) => (
     <button
         onClick={onClick}
         className={`px-3.5 py-2 rounded-lg text-[11px] font-bold transition-all border ${active

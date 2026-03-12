@@ -4,7 +4,7 @@ export const metadata = {
     title: 'Recover Password | BongOz Films',
     description: 'BongOz Films - Bringing Quality Movie Experiences to your NeighborHood',
 }
-function Page({ params }) {
+function Page({ params }: { params: any }) {
 
 
     return (

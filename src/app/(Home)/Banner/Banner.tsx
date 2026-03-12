@@ -14,8 +14,8 @@ import {
   usePrevNextButtons,
 } from "./EmblaCarouselArrowButtons";
 
-function Banner({ sliders }) {
-  const { isLoading } = useContext(AppContext);
+function Banner({ sliders }: { sliders: any[] }) {
+  const { isLoading } = useContext(AppContext)!;
   const [showWatchTrailerModal, setShowWatchTrailerModal] = useState(false);
   const [youtubeId, setYoutubeId] = useState("");
   const handleOpenWatchTrailer = () => setShowWatchTrailerModal(true);
@@ -28,9 +28,9 @@ function Banner({ sliders }) {
     nextBtnDisabled,
     onPrevButtonClick,
     onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
+  } = usePrevNextButtons(emblaApi, undefined);
   const onButtonAutoplayClick = useCallback(
-    (callback) => {
+    (callback: () => void) => {
       const autoplay = emblaApi?.plugins()?.autoplay;
       if (!autoplay) return;
 

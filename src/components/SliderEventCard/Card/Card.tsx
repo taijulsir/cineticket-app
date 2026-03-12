@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function Card({  event }) {
+function Card(props: any) {
+  const { event } = props || {};
 
   return (
   

@@ -1,4 +1,5 @@
-function VerifyEmail({ email }) {
+function VerifyEmail(props: any) {
+    const { email } = props || {};
     return (
         <div className="my-16 px-0 md:px-5 lg:px-36">
             <h4 className="text-center font-medium">Check Your Email</h4>

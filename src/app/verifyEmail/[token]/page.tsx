@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import useAxiosAuthInstance from '@/Utilities/Hooks/AxiosInstanceHooks/useAxiosAuthInstance';
 import { useAuth } from '@/context/AuthContext/AuthContext';
 
-function Page({params}) {
+function Page({params}: {params: any}) {
     const router = useRouter();
     const axiosAuthInstance = useAxiosAuthInstance();
-    const { setCustomer,setIsLoading } = useAuth();
+    const { setCustomer,setIsLoading } = (useAuth() as any) || {};
     const { token } = params;
 
     useEffect(() => {     

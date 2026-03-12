@@ -21,21 +21,21 @@ function SelectShowButton({
 	error,
 	setError,
 	triggerFetch
-}) {
+}: { steps?: any[]; currentStep: number; setCurrentStep?: (v: number | ((prev: number) => number)) => void; selectedSeats?: any[]; name?: string; email?: string; mobileNumber?: string; handleCustomerOrder?: any; handleGuestOrder?: any; createCustomerOrderAfterTotalZero?: any; createGuestOrderAfterTotalZero?: any; error?: string; setError?: (v: string) => void; triggerFetch?: any }) {
 
-	const { customer } = useAuth();
-	const { afterDiscountTotal, isPromo, total, setSelectedSeats } = useContext(AppContext);
+	const { customer } = useAuth() as any;
+	const { afterDiscountTotal, isPromo, total, setSelectedSeats } = useContext(AppContext) as any;
 	const axiosPublicInstance = useAxiosPublicInstance()
 
 	const handleNextClick = async () => {
 		try {
 			const { data } = await axiosPublicInstance.post("/checkSeatIsBooked", { selectedSeats });
 			if (data.error) {
-				setError(data.message);
-				triggerFetch()
-				setSelectedSeats([])
+				setError?.(data.message);
+				triggerFetch?.();
+				setSelectedSeats?.([]);
 			} else {
-				setCurrentStep((prev) => prev + 1);
+				setCurrentStep?.((prev: number) => prev + 1);
 			}
 		} catch (error) {
 			console.error('Error checking seats:', error);
@@ -49,20 +49,20 @@ function SelectShowButton({
 				disabled={currentStep <= 1 ? true : false}
 				className="w-[80px] max-sm:h-[28px]  bg-gray-200 text-black hover:bg-gray-100   hover:border-[1px] border-gray-400"
 				onClick={() => {
-					setCurrentStep((prev) => prev - 1);
+					setCurrentStep?.((prev: number) => prev - 1);
 				}}
 			>
 				Back
 			</Button>
 
-			{currentStep === steps.length ? (
+			{currentStep === (steps?.length ?? 0) ? (
 				<Button
 					className=" hover:bg-transparent hover:text-primary hover:border-[1px] border-primary"
 					disabled={
-						selectedSeats.length < 1 ||
+						(selectedSeats?.length ?? 0) < 1 ||
 						!name ||
 						!email ||
-						!mobileNumber || error
+						!mobileNumber || !!error
 					}
 					onClick={() =>
 						handleBuyTickets({
@@ -82,7 +82,7 @@ function SelectShowButton({
 			) : (
 				<Button
 					className="w-[80px] max-sm:h-[28px] hover:bg-transparent hover:text-primary hover:border-[1px] border-primary"
-					disabled={selectedSeats.length < 1}
+					disabled={(selectedSeats?.length ?? 0) < 1}
 					onClick={handleNextClick}
 				>
 					Next

@@ -1,6 +1,14 @@
 import MovieDetailRow from "./MovieDetailRow/MovieDetailRow";
 
-function MovieDetailsTable({ ratings, director, cast }) {
+function MovieDetailsTable({
+  ratings,
+  director,
+  cast,
+}: {
+  ratings?: any[];
+  director?: string;
+  cast?: any[];
+}) {
   return (
     <div>
       <table>

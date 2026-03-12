@@ -1,4 +1,5 @@
-function CardSkeletonWrapper({ children }) {
+function CardSkeletonWrapper(props: any) {
+  const { children } = props || {};
   return (
     <div
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 

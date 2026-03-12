@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useScrollToHash(event, hashTarget = "#bookSeats") {
+function useScrollToHash(event: any, hashTarget = "#bookSeats") {
     useEffect(() => {
         const hash = window.location.hash;
 

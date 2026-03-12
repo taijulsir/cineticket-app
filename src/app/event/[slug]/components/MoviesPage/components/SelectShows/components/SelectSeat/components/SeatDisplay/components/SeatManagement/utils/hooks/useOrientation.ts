@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, RefObject } from 'react';
 
-const useOrientation = (ref) => {
+const useOrientation = (ref: RefObject<HTMLElement | null>) => {
     const [orientation, setOrientation] = useState('landscape');
 
     useEffect(() => {

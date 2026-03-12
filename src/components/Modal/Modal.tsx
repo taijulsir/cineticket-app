@@ -7,7 +7,7 @@ function Modal({
     children,
     extraClass,
     setShowModalContent,
-}) {
+}: { children?: any; extraClass?: string; setShowModalContent?: any }) {
     return (
         <div className={`hall_modal ${extraClass}`}>
             <div

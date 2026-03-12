@@ -1,7 +1,7 @@
 import { IMAGE_URL } from "@/Utilities/APIs/APIs"
 import Image from "next/image"
 
-function ImageDisplay({event}) {
+function ImageDisplay({event}: { event: any }) {
   return (
     <Image
         alt="Movie Banner Image"

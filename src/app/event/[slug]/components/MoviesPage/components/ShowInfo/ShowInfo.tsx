@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ShowInfo ({statistics}) {
+function ShowInfo ({statistics}: { statistics?: any }) {
   return (
     <div>
       <h3 className="font-medium pt-6 md:pt-6">Book your seats</h3>

@@ -1,6 +1,15 @@
 import React from 'react';
 
-function Skeleton({ height, mdHeight, lgHeight, width, mdWidth, lgWidth }) {
+interface SkeletonProps {
+  height?: any;
+  mdHeight?: any;
+  lgHeight?: any;
+  width?: any;
+  mdWidth?: any;
+  lgWidth?: any;
+}
+
+function Skeleton({ height, mdHeight, lgHeight, width, mdWidth, lgWidth }: SkeletonProps) {
   return (
     <div
       className={`

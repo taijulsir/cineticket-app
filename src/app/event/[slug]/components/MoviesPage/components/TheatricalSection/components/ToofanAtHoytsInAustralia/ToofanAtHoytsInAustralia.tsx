@@ -4,7 +4,7 @@ function ToofanAtHoytsInAustralia({
     name, setName,
     email, setEmail,
     mobileNumber, setMobileNumber
-}) {
+}: { name?: any; setName?: any; email?: any; setEmail?: any; mobileNumber?: any; setMobileNumber?: any }) {
     return (
         // <div className="hoyts_contact_form w-full">
         <div 

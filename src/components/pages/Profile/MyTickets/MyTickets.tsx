@@ -8,21 +8,21 @@ const formSchema = z.object({
 });
 
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table as TableAny,
+  TableBody as TableBodyAny,
+  TableCaption as TableCaptionAny,
+  TableCell as TableCellAny,
+  TableFooter as TableFooterAny,
+  TableHead as TableHeadAny,
+  TableHeader as TableHeaderAny,
+  TableRow as TableRowAny,
 } from "@/components/ui/table";
 import { IoSquareOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import useAxiosInstance from "@/Utilities/Hooks/useAxiosInstance";
 
-const orders = [
+const sampleOrders = [
   {
     invoice: "#35622A",
     paymentStatus: "May 5, 4:12PM",
@@ -66,8 +66,8 @@ const orders = [
 ];
 function MyTickets() {
 
-  const [orders, setOrders] = useState([])
-  const [orderItems, setOrderItems] = useState([])
+  const [orders, setOrders] = useState<any[]>([])
+  const [orderItems, setOrderItems] = useState<any[]>([])
   const axiosInstance = useAxiosInstance()
 
 
@@ -75,8 +75,8 @@ function MyTickets() {
     async function fetchAndSetOrders() {
       const { data } = await axiosInstance.get("orders")
       const ordersData = data?.data ?? data?.orders ?? []
-      setOrders(ordersData)
-      setOrderItems(ordersData.flatMap((order) => order?.items ?? []))
+  setOrders(ordersData)
+  setOrderItems(ordersData.flatMap((order: any) => order?.items ?? []))
     }
     fetchAndSetOrders()
   }, [axiosInstance])
@@ -85,40 +85,17 @@ function MyTickets() {
   return (
     <div>
       <h3 className="pb-8 text-center md:text-start">My Tickets</h3>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            {/* <TableHead>Ticket ID</TableHead> */}
-            <TableHead>Date</TableHead>
-            <TableHead>Seat</TableHead>
-            {/* <TableHead>Status</TableHead> */}
-            {/* <TableHead>Pay by</TableHead> */}
-            <TableHead>Total</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {orders.map((order, i) => (
-            <TableRow key={order?._id}>
-
-              <TableCell><div className="text-[#FFFFFF]">{new Date(order?.createdAt).toLocaleDateString()}</div>
-              </TableCell>
-
-              {/* <TableCell>
-                <div className="text-[#FFFFFF]">{orderItems?.map(order=>order?.seat?.seatName)}</div>
-              </TableCell> */}
-
-              <TableCell>
-                <div className="text-[#FFFFFF]">
-                  {orderItems?.map(order => order?.seat?.seatName).join(', ').replace(/,([^,]*)$/, '.$1')}
-                </div>
-              </TableCell>
-
-              <TableCell><div className="text-[#FFFFFF]">${order?.total}</div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <div className="space-y-4">
+        {orders.map((order: any) => (
+          <div key={order?._id} className="p-4 bg-[#0e0e13] border border-white/5 rounded-lg">
+            <div className="text-[#FFFFFF] font-bold">{new Date(order?.createdAt).toLocaleDateString()}</div>
+            <div className="text-[#FFFFFF] mt-2">
+              {orderItems?.map((it: any) => it?.seat?.seatName).join(', ').replace(/,([^,]*)$/, '.$1')}
+            </div>
+            <div className="text-[#FFFFFF] mt-2">${order?.total}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

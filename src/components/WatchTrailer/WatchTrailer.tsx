@@ -1,7 +1,8 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import TrailerVideo from "../TrailerVideo/TrailerVideo";
 
-function WatchTrailer({ isOpen, onClose, youtubeId }) {
+function WatchTrailer(props: any) {
+  const { isOpen, onClose, youtubeId } = props || {};
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="border-none w-[500px] h-[400px]">

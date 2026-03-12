@@ -4,7 +4,8 @@ import { MdKeyboardDoubleArrowRight, MdOutlinePlayArrow } from "react-icons/md"
 import './bannerButton.css'
 
 
-function BannerButton({ slider, setShowWatchTrailerModal, setYoutubeId }) {
+function BannerButton(props: any) {
+    const { slider, setShowWatchTrailerModal, setYoutubeId } = props || {};
     return (
         <div className="grid grid-cols-2 grid-flow-row gap-2 md:gap-6 mt-5 md:mt-8 ">
             <Link href={`event/${slider?.event?.slug}`} className="banner-button">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import Link from 'next/link';
@@ -48,10 +49,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ movies }) => {
                             <div className="relative h-full w-full">
                                 {/* Background Image */}
                                 <div className="absolute inset-0">
-                                    <img
+                                    <Image
                                         src={movie.backdropUrl}
                                         alt={movie.title}
-                                        className={`w-full h-full object-cover transition-transform duration-[10000ms] ease-linear ${isActive ? "scale-105" : "scale-100"}`}
+                                        fill
+                                        className={`object-cover transition-transform duration-[10000ms] ease-linear ${isActive ? "scale-105" : "scale-100"}`}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0f] via-transparent to-transparent" />
@@ -162,7 +164,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ movies }) => {
                 </div>
                 <div className="flex gap-4">
                     {sideMovies.map((movie, index) => (
-                        <motion.div
+                            <motion.div
                             key={movie.id}
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -170,7 +172,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ movies }) => {
                             onClick={() => swiperRef.current?.slideToLoop(index)}
                             className={`group relative w-48 h-28 rounded-[1.5rem] overflow-hidden cursor-pointer border-2 transition-all duration-500 shadow-soft ${activeIndex === index ? "border-primary scale-105 shadow-[0_0_20px_rgba(231,173,4,0.4)]" : "border-white/5 opacity-50 hover:opacity-100 hover:border-white/20"}`}
                         >
-                            <img src={movie.backdropUrl} alt={movie.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <Image src={movie.backdropUrl} alt={movie.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-3.5">
                                 <h4 className="text-white text-xs font-black truncate group-hover:text-primary transition-colors">{movie.title}</h4>
                                 <div className="flex items-center justify-between mt-1">

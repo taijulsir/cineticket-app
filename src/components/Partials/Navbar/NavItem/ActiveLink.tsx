@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 
 
-function NavItem({ href, children }) {
+function NavItem({ href, children }: { href?: any; children?: any }) {
     const pathName = usePathname();
     const isActive = pathName === href;
 

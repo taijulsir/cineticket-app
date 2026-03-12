@@ -1,6 +1,6 @@
 
 
-function FooterWrapper({ children }) {
+function FooterWrapper({ children }: { children?: any }) {
 
 
     return (

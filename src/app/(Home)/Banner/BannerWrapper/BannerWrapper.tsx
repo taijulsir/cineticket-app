@@ -1,5 +1,6 @@
+import React from "react";
 
-function BannerWrapper({ slider, children }) {
+function BannerWrapper({ slider, children }: { slider: any; children: React.ReactNode }) {
   return (
     <div
       className="relative h-[210px] md:h-calc-82vh-minus-90 mt-[70px] lg:mt-[90px] bg-cover bg-center flex flex-col justify-center items-center "

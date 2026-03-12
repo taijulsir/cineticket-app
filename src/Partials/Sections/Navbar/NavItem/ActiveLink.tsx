@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 
 
 
-function NavItem({ href, children }) {
+function NavItem(props: any) {
+    const { href, children } = props || {};
     const pathName = usePathname();
     const isActive = pathName === href;
 

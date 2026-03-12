@@ -13,11 +13,9 @@ export const handleGuestOrder = async ({
     setError,
     axiosPublicInstance,
     triggerFetch
-}) => {
-    
+}: any) => {
     try {
-        
-        const orderData = {
+        const orderData: any = {
             eventId,
             showId: selectedShows,
             name,
@@ -25,31 +23,33 @@ export const handleGuestOrder = async ({
             email,
             total,
             discount,
-            ticketItems: selectedSeats.map((seat) => ({ seatId: seat._id || seat.id, price: seat.price || 600 })),
+            ticketItems: (selectedSeats || []).map((seat: any) => ({ seatId: seat._id || seat.id, price: seat.price || 600 })),
         };
 
         if (promoCode) {
-            orderData.promoCodeId = promoCodeId
+            orderData.promoCodeId = promoCodeId;
         }
 
-        const orderRes = await axiosPublicInstance.post('/orders', orderData);
-        const orderDataPayload = orderRes.data?.data ?? orderRes.data;
+        const orderRes: any = await axiosPublicInstance.post('/orders', orderData);
+        const orderDataPayload: any = (orderRes.data?.data ?? orderRes.data) as any;
         const orderId = orderDataPayload?.id;
         if (!orderId) {
-            setError('Order creation failed')
-            setSelectedSeats([])
-            triggerFetch()
+            setError?.('Order creation failed');
+            setSelectedSeats?.([]);
+            triggerFetch?.();
             return;
         }
-        const paymentRes = await axiosPublicInstance.post('/payments/stripe/start', { orderId });
-        const checkoutUrl = paymentRes.data?.data?.checkoutUrl ?? paymentRes.data?.checkoutUrl;
+        const paymentRes: any = await axiosPublicInstance.post('/payments/stripe/start', { orderId });
+        const checkoutUrl = (paymentRes.data?.data?.checkoutUrl ?? paymentRes.data?.checkoutUrl) as any;
         if (!checkoutUrl) {
-            setError('Stripe session failed');
+            setError?.('Stripe session failed');
             return;
         }
-        window.location.href = checkoutUrl;
+        if (typeof window !== 'undefined') {
+            window.location.href = checkoutUrl;
+        }
     } catch (error) {
         console.error(error);
-        setError(error.message);
+        setError?.(((error as any)?.message) || String(error));
     }
 };

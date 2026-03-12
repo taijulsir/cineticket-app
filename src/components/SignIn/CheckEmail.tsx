@@ -1,4 +1,4 @@
-function CheckEmail({ email }) {
+function CheckEmail({ email }: { email?: any }) {
   return (
     <div className="my-16">
       <h3 className="text-center font-medium">Check Your Email</h3>
