@@ -19,6 +19,16 @@ const nextConfig = {
         hostname: `cineticket.com`,
       },
 
+      // External image hosts used across the site
+      {
+        protocol: "https",
+        hostname: `image.tmdb.org`,
+      },
+      {
+        protocol: "https",
+        hostname: `images.unsplash.com`,
+      },
+
     ],
   },
 };
