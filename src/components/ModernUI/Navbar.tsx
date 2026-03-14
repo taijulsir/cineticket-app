@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Search, User, Menu, X, Ticket, ChevronDown } from "lucide-react";
+import { Search, Menu, X, Ticket, ChevronDown, User, FileText, Bookmark, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/context/AuthContext/AuthContext";
 
@@ -20,14 +20,32 @@ const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
+        const handleClickOutside = (event: MouseEvent) => {
+            if (activeDropdown === 'user' && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setActiveDropdown(null);
+            }
+        };
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setActiveDropdown(null);
+            }
+        };
+
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, [activeDropdown]);
 
     const navGroups: NavGroup[] = [
         {
@@ -130,17 +148,39 @@ const Navbar: React.FC = () => {
                     </button>
 
                     {auth?.customer ? (
-                        <div className="relative">
+                        <div className="relative" ref={dropdownRef}>
                             <button className="hidden md:flex items-center gap-2 p-2 text-gray-300 hover:text-primary transition-colors whitespace-nowrap" onClick={() => setActiveDropdown(prev => prev === 'user' ? null : 'user')}>
-                                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 text-white font-bold">{auth.customer.name ? auth.customer.name.split(' ').map(n=>n[0]).slice(0,2).join('') : 'U'}</div>
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white font-bold">{auth.customer.name ? auth.customer.name.substring(0, 1).toUpperCase() : 'U'}</div>
                                 <span className="text-sm font-bold">{auth.customer.name}</span>
                             </button>
                             <AnimatePresence>
                                 {activeDropdown === 'user' && (
-                                    <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} className="absolute right-0 mt-2 w-44 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl py-2 z-50">
-                                        <Link href="/my-bookings" className="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5">My Bookings</Link>
-                                        <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5">Profile</Link>
-                                        <button onClick={() => { auth.logout(); setActiveDropdown(null); }} className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-white/5">Logout</button>
+                                    <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} transition={{ duration: 0.2 }} className="absolute right-0 mt-3 w-64 bg-[#121216]/95 backdrop-blur-xl border border-white/10 rounded-[1.5rem] shadow-2xl overflow-hidden z-50 p-2">
+                                        <div className="px-4 py-4 border-b border-white/10 mb-2">
+                                            <div className="flex items-center gap-3">
+                                                 <div className="w-10 h-10 rounded-full flex items-center justify-center bg-primary/20 text-primary font-bold">{auth.customer.name ? auth.customer.name.substring(0, 1).toUpperCase() : 'U'}</div>
+                                                 <div className="flex flex-col overflow-hidden">
+                                                    <span className="text-sm border-0 font-bold text-white truncate">{auth.customer.name}</span>
+                                                    <span className="text-xs text-gray-400 truncate">{auth.customer.email}</span>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <Link href="/profile" onClick={() => setActiveDropdown(null)} className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+                                                <User size={16} className="text-gray-400 group-hover:text-primary" /> Profile
+                                            </Link>
+                                            <Link href="/my-bookings" onClick={() => setActiveDropdown(null)} className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+                                                <Bookmark size={16} className="text-gray-400 group-hover:text-primary" /> My Bookings
+                                            </Link>
+                                            <Link href="/my-tickets" onClick={() => setActiveDropdown(null)} className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+                                                <Ticket size={16} className="text-gray-400 group-hover:text-primary" /> My Tickets
+                                            </Link>
+                                        </div>
+                                        <div className="mt-2 pt-2 border-t border-white/10">
+                                            <button onClick={() => { auth.logout(); setActiveDropdown(null); }} className="w-full text-left flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-400 hover:bg-red-500/10 rounded-xl transition-all">
+                                                <LogOut size={16} /> Logout
+                                            </button>
+                                        </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>

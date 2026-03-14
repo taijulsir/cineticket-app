@@ -73,10 +73,17 @@ function MyTickets() {
 
   useEffect(() => {
     async function fetchAndSetOrders() {
-      const { data } = await axiosInstance.get("orders")
-      const ordersData = data?.data ?? data?.orders ?? []
-  setOrders(ordersData)
-  setOrderItems(ordersData.flatMap((order: any) => order?.items ?? []))
+      try {
+        const { data } = await axiosInstance.get("orders")
+        const ordersData = data?.data ?? data?.orders ?? []
+        const ordersArr = Array.isArray(ordersData) ? ordersData : []
+        setOrders(ordersArr)
+        setOrderItems(ordersArr.flatMap((order: any) => order?.items ?? []))
+      } catch (err) {
+        console.error("Failed to fetch tickets:", err)
+        setOrders([])
+        setOrderItems([])
+      }
     }
     fetchAndSetOrders()
   }, [axiosInstance])
