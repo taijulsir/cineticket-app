@@ -22,6 +22,7 @@ const SignupPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const auth = useAuth();
   const router = useRouter();
 
@@ -29,10 +30,22 @@ const SignupPage: React.FC = () => {
     return /^\S+@\S+\.\S+$/.test(email);
   };
 
+  const handlePasswordChange = (val: string) => {
+    setPassword(val);
+    if (val.length > 0 && val.length < 8) {
+      setPasswordError("Password must be at least 8 characters");
+    } else {
+      setPasswordError("");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateEmail(email)) return toast.error("Please enter a valid email");
-    if (password.length < 8) return toast.error("Password must be at least 8 characters");
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters");
+      return toast.error("Password must be at least 8 characters");
+    }
     if (password !== confirmPassword) return toast.error("Passwords do not match");
 
     setIsLoading(true);
@@ -118,9 +131,10 @@ const SignupPage: React.FC = () => {
               <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Password</label>
               <div className="relative group">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-primary transition-colors" size={17} />
-                <input type={showPassword ? "text" : "password"} required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Create a password" className="w-full bg-white/[0.03] border border-white/[0.06] rounded-xl py-3.5 pl-11 pr-12 text-white text-sm outline-none focus:border-primary/50 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_rgba(231,173,4,0.08)] transition-all font-medium placeholder:text-gray-700" />
+                <input type={showPassword ? "text" : "password"} required value={password} onChange={(e) => handlePasswordChange(e.target.value)} placeholder="Create a password" className={`w-full bg-white/[0.03] border ${passwordError ? 'border-red-500/50 focus:border-red-500/50' : 'border-white/[0.06] focus:border-primary/50'} rounded-xl py-3.5 pl-11 pr-12 text-white text-sm outline-none focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_rgba(231,173,4,0.08)] transition-all font-medium placeholder:text-gray-700`} />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 hover:text-white transition-colors">{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button>
               </div>
+              {passwordError && <p className="text-[10px] text-red-400 font-bold ml-1 animate-pulse">{passwordError}</p>}
             </div>
 
             <div className="space-y-2">

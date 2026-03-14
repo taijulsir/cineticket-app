@@ -1,17 +1,17 @@
 
-import ProfilePages from "@/components/pages/Profile/ProfilePages/ProfilePages";
-import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
+import AccountLayout from "@/components/ModernUI/AccountLayout";
+import ProfileClient from "./ProfileClient";
 
 export const metadata = {
   title: 'Profile | CineTicket',
-  description: 'CineTicket - Bringing Quality Movie Experiences to your NeighborHood',
+  description: 'Manage your CineTicket profile seamlessly.',
 }
-function page() {
+
+export default function ProfilePage() {
   return (
-    <ProtectedRoute>
-      <ProfilePages />
-    </ProtectedRoute>
+    <AccountLayout>
+      <ProfileClient />
+    </AccountLayout>
   );
 }
 
-export default page;
