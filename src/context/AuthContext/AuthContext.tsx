@@ -84,7 +84,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
   async function googleLogin(credential: string) {
     try {
       setIsLoading(true);
-      const response = await axiosPublicInstance.post(GOOGLE_LOGIN_API, { token: credential });
+      // backend expects `googleToken` (string) in the body (validated by DTO)
+      const response = await axiosPublicInstance.post(GOOGLE_LOGIN_API, { googleToken: credential });
       if (response.data) {
         setCustomer(response.data);
         localStorage.setItem("customer", JSON.stringify(response.data));
