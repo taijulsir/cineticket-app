@@ -92,6 +92,17 @@ export const cineticketApi = {
   getHeroSliders: () => getJson<any[]>("/hero-sliders"),
   getAds: () => getJson<any[]>("/ads"),
   getSocialLinks: () => getJson<any[]>("/social-links"),
+  getTheaters: (params: { cityId?: string; format?: string; search?: string; page?: number; limit?: number } = {}) => {
+    const query = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== "") query.set(key, String(value));
+    });
+    return getJson<{ data: any[]; meta: { total: number; page: number; limit: number } }>(
+      `/theaters${query.toString() ? `?${query.toString()}` : ""}`,
+    );
+  },
+  getTheaterBySlug: (slug: string) => getJson<any>(`/theaters/${slug}`),
+  getTheaterShows: (id: string) => getJson<any[]>(`/theaters/${id}/shows`),
 };
 
 export { API_BASE };
